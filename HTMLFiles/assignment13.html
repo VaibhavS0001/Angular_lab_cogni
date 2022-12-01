@@ -1,0 +1,113 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form validation</title>
+    <link rel="stylesheet" href="/css/assignment13.css">
+    <script src="/js/assignment13.js"></script>
+    <script>
+        function printError(elemId, hintMsg) {
+    document.getElementById(elemId).innerHTML = hintMsg;
+}
+function validateForms() {
+    var name = document.contactForm.name.value;
+    var email = document.contactForm.email.value;
+    var mobile = document.contactForm.mobile.value;
+    var country = document.contactForm.country.value;
+    var nameErr = emailErr = mobileErr = countryErr = true;
+    if (name == "") {
+        printError("nameErr", "Please enter name");
+    }
+    else {
+        var regex = /^[a-zA-Z\s]+$/;
+        if (regex.test(name) === false) {
+            printError("nameErr", "Enter valid name");
+        }
+        else {
+            printError("nameErr", ""); nameErr = false;
+        }
+    }
+    if (email == "") {
+        printError("emailErr", "enter your email");
+    }
+    else {
+        var regex = /^\S+@\S+\.\S+$/;
+        if (regex.test(email) === false) {
+            printError("emailErr", "Please enter a valid email");
+        }
+        else {
+            printError("emailErr", "");
+            emailErr = false;
+        }
+    } if (mobile == "") {
+        printError("mobileErr", "Please enter mobile number");
+    } else {
+        var regex =/^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
+        if (regex.test(mobile) === false) {
+            printError("mobileErr", "Please enter a valid mobile number");
+        } else {
+            printError("mobileErr", "");
+            mobileErr = false;
+        }
+    } if (country == "Select") {
+        printError("countryErr", "Please select country");
+    } else {
+        printError("countryErr", "");
+        countryErr = false;
+    }
+    if ((nameErr || emailErr || mobileErr || countryErr) == true) {
+        return false;
+    }
+    else {
+        var dataPreview = "You've entered the following details: \n" + "Full Name: " + name + "\n" + "Email Address: " +
+            email + "\n" + "Mobile Number: " + mobile + "\n" + "Country: " + country ;
+        alert(dataPreview);
+        var storage = window.localStorage
+        storage.setItem("name", name)
+        storage.setItem("email", email)
+        storage.setItem("number", mobile)
+        storage.setItem("country", country)
+        // document.getElementById('contactForm').submit()
+    }
+}
+    </script>
+</head>
+
+<body>
+    <section>
+        <form name="contactForm" method="get" action="/HTMLFiles/success.html" onsubmit="validateForms()">
+            <h2>Validation Form</h2>
+            
+            <div class="w-100">
+                Full Name: <input type="text" name="name">
+                <div class="error" id="nameErr"></div>
+            </div>
+            
+            <div  class="w-100">
+                Email Address: <input type="text" name="email">
+                <div class="error" id="emailErr"></div>
+            </div>
+
+            <div  class="w-100">
+                Mobile Number: <input type="text" name="mobile" maxlength="10">
+                <div class="error" id="mobileErr"></div>
+            </div>
+            
+            <div  class="w-100">
+                Country</label><select name="country">
+                    <option>Select</option>
+                    <option>Australia</option>
+                    <option>India</option>
+                </select>
+                <div class="error" id="countryErr"></div>
+            </div>
+            
+            <div  class="w-100">
+                <input type="submit" value="Submit">
+            </div>
+            
+        </form>
+    </section>
+</body>
+
+</html>

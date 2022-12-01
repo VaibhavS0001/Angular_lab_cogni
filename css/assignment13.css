@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+section form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    padding: 2%;
+}
+
+.w-100{
+    width: 100%;
+}
+
+section form input, select{
+    width: 100%;
+    margin-bottom: 3%;
+    border-radius: 5px;
+    height: 40px;
+}
+
+section{
+    height: 100%;
+    background-color: teal;
+}

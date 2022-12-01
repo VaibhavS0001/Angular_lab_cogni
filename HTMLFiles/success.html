@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = ()=>{
+            var storage = window.localStorage
+        var name = storage.getItem("name")
+        var email = storage.getItem("email")
+        var mobile = storage.getItem("number")
+        var country = storage.getItem("country")
+
+        document.getElementById("data").innerHTML =
+        `
+        Name: <p>${name}</p>
+        <p>Email: ${email}</p>
+        <p>Mobile: ${mobile}</p>
+        <p>Country: ${country}</p>`
+        }
+        
+    </script>
+</head>
+<body>
+    <p id="data"></p>
+</body>
+</html>
