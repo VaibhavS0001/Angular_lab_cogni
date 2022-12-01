@@ -1,0 +1,30 @@
+h1{
+    color: yellow;
+}
+
+h2{
+    color: chocolate;
+}
+
+h2:hover{
+    color: chartreuse;
+}
+
+h3{
+    background-color: cornflowerblue;
+}
+
+h3:hover{
+    font-style: italic;
+}
+
+p::first-line{
+    font-style: italic;
+}
+
+div{
+    transform: rotate(90deg);
+    position: relative;
+    right: 47%;
+}
+
