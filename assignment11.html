@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function changed() {
+        let check = document.getElementById("toogleswitch").checked
+        if (check)
+            document.getElementById("toogle").innerHTML = "ON"
+        else
+            document.getElementById("toogle").innerHTML = "OFF"
+    }
+    function keydown(val) {
+        console.log("You pressed " + String.fromCharCode(val.keyCode));
+        document.getElementById("press").style.backgroundColor = "black"
+        document.getElementById("press").style.color = "white"
+    }
+    function keyup() {
+        console.log("You pressed " + String.fromCharCode(val.keyCode));
+        document.getElementById("press2").style.backgroundColor = "red"
+        document.getElementById("press2").style.color = "green"
+    }
+    const addup = () => {
+        let result = parseInt(document.getElementById("press").value) + parseInt(document.getElementById("press2").value)
+        document.getElementById("res").innerHTML = result
+    }
+
+</script>
+
+<body>
+    <form>
+        <input type="checkbox" name="switch" id="toogleswitch" onclick="changed()">
+        <p id="toogle">OFF</p>
+
+        <br>
+        <br>
+        <input type="number" id="press" onkeydown="keydown(event)" onchange="addup()" max="10" value="0">+
+        <input type="number" id="press2" onkeyup="keyup()" onchange="addup()" min="-10" value="0"><label id="res">: 0</label>
+    </form>
+</body>
+
+</html>

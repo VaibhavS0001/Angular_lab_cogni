@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let ws
+        const start = () =>{
+            ws = new WebSocket('ws://localhost:8082')
+            ws.addEventListener('open', ()=>{
+                console.log('we are connected')
+            })
+        }
+        const send = ()=>{
+                ws.send(`\n${document.getElementById("message").value}`)
+        }
+        function closed(){
+            ws.close()
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="open connection" onclick="start()">
+    <br>
+    <br>
+    <form action="">
+        <input type="text" placeholder="message" id="message">
+        <input type="button" value="send" onclick="send()">
+    </form>
+    <br>
+    <input type="button" value="close" onclick="closed()">
+
+</body>
+</html>

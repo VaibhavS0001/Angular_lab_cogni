@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            background-color: aquamarine;
+            padding: 2%;
+            width: 29%;
+        }
+        .strong{
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <form action="/assignment2.html">
+    <div class="strong">
+        Enter First Name: <input type="text" placeholder="FName">
+    </div>
+    <br>
+    <div class="strong">
+        Enter Last Name: <input type="text" placeholder="LName">        
+    </div>
+    <br>
+    <div class="strong">
+        Enter Address: <textarea></textarea>    
+    </div>
+    <br>
+    <div class="strong">
+        programs attended: <input type="checkbox" name="HTML" id="prog1" value="HTML">HTML
+        <input type="checkbox" name="java" id="prog2" value="Java">java
+        <input type="checkbox" name="oracle" id="prog3" value="oracle">oracle    
+    </div>
+    <br>
+    <div class="strong">
+        Select the stream you belong to: <input type="radio" name="stream" id="MTech" value="BTech">MTech
+    <input type="radio" name="stream" id="BTech" value="BTech">BTech
+    </div>
+    <br>
+    <div class="strong">
+        Which training program would you like to attend? <select name="train" id="training">
+            <option value="HTML5">HTML5</option>
+            <option value="JavaScript">Javascript</option>
+            <option value="Angular">Angular</option>
+        </select>
+    </div>
+    <br>
+    <div class="strong">
+        Upload Your Resume: <input type="file" id="myfile" name="myfile">
+    </div>
+    <br>
+    <div class="strong">
+        <input type="button" value="exit">
+        <input type="submit" value="save">
+        <input type="reset" value="reset">        
+    </div>
+</form>
+</div>
+</body>
+</html>

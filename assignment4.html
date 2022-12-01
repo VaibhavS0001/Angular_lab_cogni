@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="/assignment2.html">
+      <table>
+        <tr>
+          <td><label for="demo">Placeholder : </label></td>
+          <td>
+            <input type="number" placeholder="Numbers" />
+          </td>
+        </tr>
+
+        <tr>
+          <td><label>Autofocus : </label></td>
+          <td><input type="text" autofocus /></td>
+        </tr>
+
+        <tr>
+          <td><label>Range : </label></td>
+          <td>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="30"
+              step="1"
+            />
+          </td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><label>Search: </label></td>
+          <td>
+            <input
+              type="search"
+              placeholder="Search..."
+            />
+          </td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><label>Date : </label></td>
+          <td>
+            <input
+              type="date"
+              min="2010-08-14"
+              max="2014-08-14"
+              value=""
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td><label>Week : </label></td>
+          <td><input type="week" value="" /></td>
+        </tr>
+
+        <tr>
+          <td><label>Month : </label></td>
+          <td><input type="month" value="" /></td>
+        </tr>
+
+        <tr>
+          <td><label>Time : </label></td>
+          <td><input type="time" value="" /></td>
+        </tr>
+
+        <tr>
+          <td><label >Number : </label></td>
+          <td>
+            <input
+              type="number"
+              step="1"
+              min="-5"
+              max="10"
+              value="0"
+            />
+          </td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><label>Required : </label></td>
+          <td><input type="text" required /></td>
+        </tr>
+
+        <tr>
+          <td><label >Email:</label></td>
+          <td><input type="email" required /></td>
+        </tr>
+        <tr>
+          <td><label>Color : </label></td>
+          <td>
+            <input
+              type="color"
+            />
+          </td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><label >Country : </label></td>
+          <td>
+            <input
+              type="text"
+              list="country"
+            />
+          </td>
+          <td>
+            <datalist id="country">
+              <option value="Australia"></option>
+              <option value="India"></option>
+            </datalist>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2">
+            <audio controls>
+              <source src="/file_example_MP3_1MG.mp3" type="audio/mpeg" />
+            </audio>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <video
+              src="/video.mp4"
+              controls
+              width="300"
+              height="250"
+            ></video>
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td>
+            <button type="submit" name="submit" value="Submit">Submit</button>
+          </td>
+          <td>
+            <button type="reset" name="reset" value="reset">Reset</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

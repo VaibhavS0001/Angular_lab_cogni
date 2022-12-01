@@ -1,0 +1,47 @@
+header{
+    background-color: rgb(204, 208, 211);
+}
+
+footer{
+    background-color: rgb(204, 208, 211);
+}
+
+header nav ul{
+list-style: none;
+display: flex;
+}
+
+li a{
+  color:rgb(124, 108, 108);
+  display: block;
+  padding: 21px;
+  text-decoration: none;
+}
+li a:hover{
+    text-decoration: underline;
+}
+
+section article{
+    width: 900px;
+    margin: auto;
+    margin-top: 50px;
+}
+section article p{
+    line-height: 1.5;
+    padding:15px;
+}
+
+#skip-navigation{
+    position:fixed;
+    top:-100;
+    left:0;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    padding: 18px;
+    border :3px solid green
+}
+
+#skip-navigation:focus{
+    top:0;
+}

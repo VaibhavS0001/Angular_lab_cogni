@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const errorhandler = () =>{
+            console.log("file not available at current path")
+        }
+
+        const changestyle = () =>{
+            console.log("buffering...")
+        }
+    </script>
+    <style>
+        section{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <audio controls>
+            <source src="/file_example_MP3_1MG.mp3" type="audio/mpeg" onerror="errorhandler()"/>
+          </audio>
+        <video src="/video.mp4" controls width="300" height="250" id="vid" onerror="errorhandler()" oncanplay="changestyle()"></video>
+    </section>
+</body>
+
+</html>

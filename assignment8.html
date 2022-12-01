@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function change() { 
+            document.getElementById("p1").innerHTML = "Data changed"; 
+            document.getElementById("p1").style.color = 'Green';
+            document.getElementById("p1").style.width = '10%';
+            document.getElementById("p1").style.textAlign = 'center';
+            document.getElementById("p1").style.border = '1px solid black';
+            document.getElementById("p1").style.borderRadius = '35px';
+
+        }
+        function focused() {
+            document.getElementById("message").style.backgroundColor = 'red';
+            document.getElementById("message").style.color = 'white';
+            document.getElementById("message").style.borderRadius = '15px';
+        }
+        function blured() {
+            document.getElementById("message").style.backgroundColor = 'black';
+            document.getElementById("message").style.color = 'white';
+            document.getElementById("message").style.borderRadius = '35px';
+        }
+        function dblclicked(){
+            document.getElementById("p1").innerHTML = "Data changed onDouble click"; 
+            document.getElementById("p1").style.color = 'Red';
+            document.getElementById("p1").style.width = '50%';
+            document.getElementById("p1").style.textAlign = 'center';
+            document.getElementById("p1").style.border = '1px solid black';
+            document.getElementById("p1").style.borderRadius = '0px';
+        }
+        function getcoordis(event){
+            document.getElementById("X").innerHTML = `X: ${event.pageX}`
+            document.getElementById("Y").innerHTML = `Y: ${event.pageY}`
+        }
+    </script>
+</head>
+<body onmousemove="getcoordis(event)">
+    <p id="p1" onclick="change()"  ondblclick="dblclicked()"> change on click </p>
+    Message : <input type="text" id="message" onfocus="focused()" onblur="blured()"/>
+    <p id="X"></p>
+    <p id="Y"></p>
+</body>
+</html>
