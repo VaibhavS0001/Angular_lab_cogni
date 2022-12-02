@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: larger;
+  font-style: italic;
+  margin: 1%;
+  font-family: monospace;
+  border: 10px solid greenyellow;
+  border-radius: 10px;
+}
+
+/*# sourceMappingURL=basic.css.map */

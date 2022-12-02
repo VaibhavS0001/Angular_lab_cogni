@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: larger;
+  font-style: italic;
+  margin: 1%;
+  font-family: monospace;
+  border: 10px solid greenyellow;
+  border-radius: 10px;
+}
+
+h3 {
+  background-color: rgb(244, 111, 33);
+}
+
+h2 {
+  background-color: green;
+}
+
+.c1 {
+  border: 3px solid salmon;
+}
+
+#p1 {
+  color: brown;
+  font-size: 3rem;
+}
+
+body {
+  margin: 1;
+  padding: 0.5;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.5rem;
+}
+
+p {
+  padding: 10px 12px;
+  margin: 1px;
+  color: pink;
+}
+
+p:nth-of-type(1) {
+  background-color: yellow;
+  border: 2px dashed deeppink;
+}
+
+p:nth-of-type(2) {
+  background-color: darksalmon;
+  border: 1px dotted purple;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+p:nth-of-type(3) {
+  background-color: rgb(136, 255, 0);
+  color: purple;
+  font-weight: bolder;
+  margin: 2%;
+  border: 2px dashed darksalmon;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode";
+}
+
+p:nth-of-type(4) {
+  background-color: black;
+  color: white;
+  margin: 2%;
+  box-shadow: 1px 0px 4px 5px purple;
+  border: 1px dotted purple;
+  border-radius: 3px;
+  font-family: cursive;
+}
+
+/*# sourceMappingURL=saas.css.map */

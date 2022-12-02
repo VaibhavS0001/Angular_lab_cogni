@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+        }
+
+        img {
+            width: 30%;
+            margin: 5%;
+            height: 30%;
+            box-shadow: 1px 2px 11px 1px;
+            animation: rotation ease-in 3s;
+        }
+
+        @keyframes rotation {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(180deg);
+            }
+        }
+
+        p{
+            margin: 5%;
+            text-shadow: 0px 6px 7px black;
+            animation: rotate ease-in 3s;  
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+            <img src="./Source/abcd.webp">
+
+            <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</body>
+
+</html>
