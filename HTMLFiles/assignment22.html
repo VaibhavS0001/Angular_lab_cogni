@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: lawngreen;
+        }
+        section{
+            margin-top: 1vh;
+            margin-bottom: 1vh;
+            width: 100%;
+            height: 48vh;
+            background-color: lemonchiffon;
+            display: flex;
+        }
+        .article1{
+            flex: 1;
+            background-color: lightcoral;
+            margin: 1%;
+        }
+        .article2{
+            flex: 2;
+            background-color: lightcoral;
+            margin: 1%;
+
+        }
+        .article3{
+            flex: 1;
+            background-color: lightcoral;
+            margin: 1%;
+        }
+        article:nth-child(odd){
+            flex: 1;
+            background-color: lightcoral;
+            margin: 1%;
+        }
+        article:nth-child(even){
+            flex: 1;
+            background-color: mistyrose;
+            margin: 1%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <section>
+            <div class="article1"></div>
+            <div class="article2"></div>
+            <div class="article3"></div>
+        </section>
+        <section>
+            <article></article>
+            <article></article>
+            <article></article>
+            <article></article>
+            <article></article>
+        </section>
+    </div>
+</body>
+</html>

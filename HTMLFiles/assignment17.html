@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p:hover {
+            opacity: 100%;
+            background-color: rosybrown;
+            transition: opacity 0.5s;
+            transition: background-color ease-in-out 1.0s;
+        }
+
+        button:hover:not([disabled]) {
+            border: 5px solid greenyellow;
+            background-color: rosybrown;
+            font-size: large;
+            transition: opacity 0.5s;
+            transition: background-color font-size ease-in-out 6.0s;
+        }
+
+        tr:nth-child(even) {
+            background-color: rosybrown;
+        }
+
+        tr:nth-child(odd) {
+            background-color: black;
+        }
+        .text-shadow{
+            font-size: 40px;
+            line-height: 60px;
+            text-shadow: 4px 2px 4px black;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p class="text-shadow">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit odit atque rem. Eos veritatis aperiam
+            tenetur, cumque vero doloremque facere?
+        </p>
+    </div>
+    <div>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, magnam!
+        </p>
+        <button>Click Me</button>
+    </div>
+    <table border="1" cellpadding="15" cellspacing="10">
+        <tr>
+            <td><button>Not Disabled</button></td>
+            <td><button disabled="disabled">Disabled</button></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><button>Not Disabled</button></td>
+            <td><button disabled="disabled">Disabled</button></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button>Not Disabled</button></td>
+            <td><button disabled="disabled">Disabled</button></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+
+</html>
