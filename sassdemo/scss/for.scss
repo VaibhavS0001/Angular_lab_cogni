@@ -1,0 +1,9 @@
+@for $var from 1 through 4{
+    .p#{$var}{
+        padding: $var * 20px;
+        background-color: rgb($var * 74, $var * 54, $var * 44);
+        border: $var * 1px dashed black;
+        height: 4px * $var;
+        width: $var * 10%;
+    }
+}

@@ -1,0 +1,33 @@
+.p1 {
+  padding: 20px;
+  background-color: rgb(74, 54, 44);
+  border: 1px dashed black;
+  height: 4px;
+  width: 10%;
+}
+
+.p2 {
+  padding: 40px;
+  background-color: rgb(148, 108, 88);
+  border: 2px dashed black;
+  height: 8px;
+  width: 20%;
+}
+
+.p3 {
+  padding: 60px;
+  background-color: rgb(222, 162, 132);
+  border: 3px dashed black;
+  height: 12px;
+  width: 30%;
+}
+
+.p4 {
+  padding: 80px;
+  background-color: rgb(255, 216, 176);
+  border: 4px dashed black;
+  height: 16px;
+  width: 40%;
+}
+
+/*# sourceMappingURL=for.css.map */

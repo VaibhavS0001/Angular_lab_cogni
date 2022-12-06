@@ -1,0 +1,49 @@
+@mixin colormix{
+    color:darkgreen;
+
+}
+
+@mixin anim{
+    animation: animate ease-in 5s;
+}
+
+@mixin colormix2{
+    color:#AF3445;
+}
+
+@mixin white{
+    color:#FFF;
+}
+
+@mixin dynamicMixin($size,$style,$color){
+    border : $size $style $color;
+}
+
+@mixin dynaMixin($size){
+    border-radius : $size;
+}
+
+.p1{
+
+    @include colormix;
+    background-color: rgb(228, 140, 33);
+    @include dynaMixin(13px);
+    @include white();
+    @include dynamicMixin(3px,solid ,rgba(0, 255, 42, 0.651) );
+}
+
+.p2:hover{
+    @include colormix;
+    background-color: #ff69;
+    @include anim;
+}
+
+@keyframes animate {
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+h1{
+    @include colormix2()
+}
