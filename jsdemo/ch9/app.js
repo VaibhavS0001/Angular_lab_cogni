@@ -6,29 +6,33 @@ class employee {
         this.empid = empid
     }
     get name() {
-        return this.name
+        return this._name
     }
     get salary() {
-        return this.salary
+        return this._salary
     }
     get dapartment() {
-        return this.department
+        return this._department
     }
     get empid() {
-        return this.empid
+        return this._empid
     }
 
     set name(val) {
-        this.name = val
+        this._name = val
     }
-    set salary(val1) {
-        this.salary = val1
+    set salary(val) {
+        this._salary = val
     }
-    set department(val2) {
-        this.department = val2
+    set department(val) {
+        this._department = val
     }
-    set empid(val3) {
-        this.empid = val3
+    set empid(val) {
+        this._empid = val
+    }
+
+    disp(){
+        console.log(`${this.id} ${this.price}`);
     }
 }
 

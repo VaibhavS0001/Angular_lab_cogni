@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="car.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+        .div{
+            display: flex;
+            width: 50%;
+            margin: 1%;
+            padding: 1%;
+        }
+        label{
+            flex: 1;
+        }
+        input{
+            flex: 3;
+            padding: 1%;
+        }
+        button{
+            flex: 1;
+            padding: 2%;
+            font-size: larger;
+            font-weight: bolder;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form method="get" name="AddCars">
+        <div class="div">
+            <label for="id">Enter Id:</label> <input type="number" name="id" id="id"/>
+        </div>
+        <div class="div">
+            <label for="name">Enter Car Name:</label> <input type="text" name="name" id="name" />
+        </div>
+        <div class="div">
+            <label for="brand">Enter Brand:</label> <input type="text" name="brand" id="brand" />
+        </div>
+        <div class="div">
+            <label for="price">Enter Price:</label> <input type="number" name="price" id="price" />
+        </div>
+        <div class="div">
+            <button onclick="add(event)">Save</button>            
+        </div>
+      </form>
+
+      <div id="display">
+        
+      </div>
+
+      <!-- <button onclick="splicer()">Splice removal EV</button>
+        <button onclick="pop()">Pop EV</button>
+        <button onclick="unshift()">Unshift EV</button>
+        <button onclick="shift()">shift EV</button>
+        <button onclick="splicea()">Splice addition EV</button> -->
+    </div>
+  </body>
+</html>
