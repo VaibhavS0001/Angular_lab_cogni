@@ -85,9 +85,9 @@ class Store {
 document.addEventListener('DOMContentLoaded', Store.displayBooks);
 
 document.getElementById('book-form').addEventListener('submit', e => {
-        const title = document.getElementById('title').value,
-            author = document.getElementById('author').value,
-            isbn = document.getElementById('isbn').value;
+        const title = document.getElementById('title').value
+        const author = document.getElementById('author').value
+        const isbn = document.getElementById('isbn').value
         const book = new Book(title, author, isbn);
         Store.addBook(book);
         const ui = new UI();

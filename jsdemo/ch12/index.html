@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+        integrity="sha512-5fsy+3xG8N/1PV5MIJz9ZsWpkltijBI48gBzQ/Z2eVATePGHOkMIn+xTDHIfTZFVb9GMpflF2wOWItqxAP2oLQ=="
+        crossorigin="anonymous" />
+        <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <form id="task-form">
+            <div>
+                <label for="Task">task</label>
+                <input type="text" id="task" class="u-full-width">
+            </div>
+            <div>
+                <input type="submit" value="submit" class="u-full-width">
+            </div>
+        </form>
+        <input type="search" name="tasktext" id="tasktext"> <lable id="click">Click anywhere to get the full table</lable>
+        <table border = 1 class="u-full-width">
+            <thead>
+                <tr>
+                    <th colspan="2">Task</th>
+                </tr>
+            </thead>
+            <tbody id="task-list"></tbody>
+        </table>
+    </div>
+    <script src = "app.js"></script>
+</body>
+</html>
