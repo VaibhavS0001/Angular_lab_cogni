@@ -55,6 +55,11 @@ row.appendChild(cprice)
 table.appendChild(row)
 function add(event) {
     event.preventDefault()
+    if (table.children.length > 1) {
+        let t = document.getElementById("cars")
+        console.log(t)
+        t.remove()
+    }
     if (storage.getItem("cars")) {
         cars = JSON.parse(storage.getItem("cars"))
     }
@@ -65,24 +70,28 @@ function add(event) {
     let price = carform[0]['price'].value
     cars.push(new car(id, name, brand, price))
     storage.setItem('cars', JSON.stringify(cars))
+    cars = JSON.parse(storage.getItem("cars"))
     cars.forEach(car => {
+        console.log(car._id, car._name, car._brand, car._price)
+        console.log("```````````````````````````````````````")
         let row = document.createElement('TR')
         row.id = "row"
         let cid = document.createElement("TD");
-        cid.textContent = car.id
+        cid.textContent = car._id
         let cname = document.createElement("TD");
-        cname.textContent = car.name
+        cname.textContent = car._name
         let cbrand = document.createElement("TD");
-        cbrand.textContent = car.brand
+        cbrand.textContent = car._brand
         let cprice = document.createElement("TD");
-        cprice.textContent = car.price
+        cprice.textContent = car._price
         row.appendChild(cid)
         row.appendChild(cname)
         row.appendChild(cbrand)
         row.appendChild(cprice)
         table.appendChild(row)
     })
-    document.body.appendChild(table)
+    let div = document.getElementById("display")
+    div.appendChild(table)
 }
 
 function pop() {
