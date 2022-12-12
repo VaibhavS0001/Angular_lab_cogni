@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script src="./index.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="w-50 shadow-lg rounded m-4 p-3 adjust">
+      <header>
+        <h1>Loan Calculator</h1>
+      </header>
+      <section>
+        <form>
+          <div class="input-group flex-nowrap w-75 m-10">
+            <span class="input-group-text" id="addon-wrapping">$</span>
+            <input
+              id="principle"
+              type="number"
+              class="form-control"
+              placeholder="Loan Amount"
+              aria-label="loan"
+              aria-describedby="addon-wrapping"
+            />
+          </div>
+          <div class="input-group flex-nowrap w-75 m-10">
+            <span class="input-group-text" id="addon-wrapping">%</span>
+            <input
+              id="interest"
+              type="number"
+              class="form-control"
+              placeholder="Interest Rate"
+              aria-label="interest"
+              aria-describedby="addon-wrapping"
+            />
+          </div>
+          <div class="input-group flex-nowrap w-75 m-10">
+            <input
+              id="year"
+              type="number"
+              class="form-control"
+              placeholder="Years"
+              aria-label="years"
+              aria-describedby="addon-wrapping"
+            />
+          </div>
+          <div class="input-group flex-nowrap w-75 m-10">
+            <input
+              type="button"
+              class="form-control btn btn-outline-secondary"
+              aria-label="submit"
+              value="Calculate"
+              aria-describedby="addon-wrapping"
+              onclick="calculate()"
+            />
+          </div>
+        </form>
+      </section>
+      <div id="status" class="spinner-border hidden" role="status">
+        <!-- <span class="sr-only">Loading...</span> -->
+      </div>
+      <section id="res" class="hidden">
+        <h3>Results</h3>
+        <div class="input-group flex-nowrap w-75 m-10">
+          <span class="input-group-text" id="inputGroup-sizing-default"
+            >Monthly Payment</span
+          >
+          <input
+            id="mp"
+            type="text"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            disabled
+          />
+        </div>
+        <div class="input-group flex-nowrap w-75 m-10">
+          <span class="input-group-text" id="inputGroup-sizing-default"
+            >Total Payment</span
+          >
+          <input
+            id="tp"
+            type="text"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            disabled
+          />
+        </div>
+        <div class="input-group flex-nowrap w-75 m-10">
+          <span class="input-group-text" id="inputGroup-sizing-default"
+            >Total Interest</span
+          >
+          <input
+            id="ti"
+            type="text"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            disabled
+          />
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

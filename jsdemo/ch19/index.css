@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.adjust{
+    position: relative;
+    top: 10vh;
+    left: 23%;
+    text-align: center;
+}
+
+.m-10{
+    margin: 4% 4% 4% 11%;
+}
+
+.hidden{
+    display: none !important;
+}
+
+.visible{
+    display: block !important;
+}
