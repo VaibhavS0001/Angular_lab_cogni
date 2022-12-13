@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="slider" class="slider">
+      <div class="thumb"></div>
+    </div>
+    <script>
+      let thumb = slider.querySelector(".thumb");
+      thumb.onmousedown = function (event) {
+        function moveTo(X) {
+          if (X > 24 && X < 315) {
+            thumb.style.left = X - thumb.offsetWidth / 0.5 + "px";
+          }
+        }
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", onMouseUp);
+        function onMouseMove(event) {
+          moveTo(event.pageX);
+        }
+        function onMouseUp() {
+          document.removeEventListener("mousemove", onMouseMove);
+        }
+      };
+    </script>
+  </body>
+</html>

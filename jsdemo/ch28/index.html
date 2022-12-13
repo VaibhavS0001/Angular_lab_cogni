@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="phone" oninput="phone(event)" placeholder="Enter Phone Number"/>
+    <script>
+      var data = null;
+      function isLetter(str) {
+        return str.length === 1 && str.match(/[a-z]/i);
+      }
+      const phone = (e) => {
+        if (document.getElementById("phone").value.split("").length < 14) {
+          if (e.data && !isLetter(e.data) && data == undefined) {
+            data = e.data;
+          } else if (e.data && !isLetter(e.data) && data != undefined) {
+            data += e.data;
+          }else{
+            console.log(e.data)
+          }
+          document.getElementById("phone").value = data;
+        }else{
+            document.getElementById("phone").value = data;
+        }
+      };
+    </script>
+  </body>
+</html>
