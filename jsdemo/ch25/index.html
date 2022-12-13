@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: flex;
+        width: 98%;
+        margin: 1%;
+      }
+      .flexdemo {
+        flex: 1;
+      }
+      .flexdemo1 {
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <my-template class="flexdemo" style="background-color: aquamarine; text-align: center; font-size: 25px;" message="Hi this is template 1"></my-template>
+        <h1 class="flexdemo" style="text-align: center;">This is H1 text</h1>
+        <my-template class="flexdemo" style="background-color: aquamarine; text-align: center; font-size: 25px;" message="Hi this is template 2"></my-template>
+    </div>
+        <div class="container">
+            <my-template class="flexdemo1" style="background-color: aquamarine; text-align: center; font-size: 25px;" message="Hi this is template 3"></my-template>
+        </div>
+    <script src="index.js"></script>
+  </body>
+</html>

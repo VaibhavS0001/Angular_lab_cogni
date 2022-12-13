@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #getData {
+        width: 250px;
+        height: 200px;
+        padding: 10px;
+        border: 1px solid #4f4d4d;
+      }
+    </style>
+    <script>
+      function allowDrop(even) {
+        even.preventDefault();
+      }
+
+      function drag(even) {
+        even.dataTransfer.setData("text", even.target.id);
+      }
+
+      function drop(even) {
+        even.preventDefault();
+        var fetchData = even.dataTransfer.getData("text");
+        even.target.appendChild(document.getElementById(fetchData));
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="getData" ondrop="drop(event)" ondragover="allowDrop(event)">
+      
+    </div>
+    
+    <br />
+    <div id="getData" ondrop="drop(event)" ondragover="allowDrop(event)">
+      
+    </div>
+    <br>
+    <ul>
+      <li id="dragData1" draggable="true" ondragstart="drag(event)">Apple</li>
+      <li id="dragData2" draggable="true" ondragstart="drag(event)">Mango</li>
+      <li id="dragData3" draggable="true" ondragstart="drag(event)">Banana</li>
+      <li id="dragData4" draggable="true" ondragstart="drag(event)">Grapes</li>
+    </ul>
+    
+  </body>
+</html>
