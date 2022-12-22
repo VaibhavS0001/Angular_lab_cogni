@@ -1,0 +1,20 @@
+div{
+    width: 100%;
+    min-height: 10vh;
+    max-height: max-content;
+    background-color: blanchedalmond;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h1{
+    padding-top: 7%;
+}
+
+.container{
+    display: flex;
+}
+
+.flex1{
+    flex: 1;
+}

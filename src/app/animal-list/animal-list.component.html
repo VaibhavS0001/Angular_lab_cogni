@@ -1,0 +1,40 @@
+<div class="container h100">
+  <div class="m-auto pt-5">
+    <mat-form-field appearance="outline">
+      <mat-label>Filter By Name</mat-label>
+      <input matInput [(ngModel)]="Sname" (keyup)="filter()" />
+    </mat-form-field>
+    <table *ngIf="ELEMENT_DATA.length" class="table table-danger">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Age</th>
+          <th>
+            <button mat-raised-button color="primary" (click)="show()">
+              {{ text }}
+            </button>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of ELEMENT_DATA">
+          <td>{{ i.id }}</td>
+          <td>{{ i.name }}</td>
+          <td>{{ i.description }}</td>
+          <td>{{ i.age }}</td>
+          <td>
+            <img
+              *ngIf="showImg"
+              src="{{ i.image }}"
+              alt=""
+              [height]="img_height"
+              [width]="img_width"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

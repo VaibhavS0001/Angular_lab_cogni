@@ -1,0 +1,30 @@
+<div class="container h100">
+    <div class="m-auto pt-5">
+      <h1 class="text-center">Product List</h1>
+      <mat-form-field appearance="outline">
+        <mat-label>Filter By Category</mat-label>
+        <input matInput [(ngModel)]="sCategory" (keyup)="filter()"/>
+      </mat-form-field>
+      <table *ngIf="productData.length" class="table table-success">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Images</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of productData">
+            <td>{{ i.id }}</td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.price | currency: 'INR'}}</td>
+            <td>{{ i.category }}</td>
+            <td><img src="{{ i.image }}" alt="" width="30%" height="50px"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
