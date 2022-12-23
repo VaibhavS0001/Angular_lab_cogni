@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-welcome',
@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./welcome.component.scss']
 })
 export class WelcomeComponent {
-
+  pipe: string = 'Vaibhav'
+  num: number = 6
+  checked: boolean
+  
+  onclick(e){
+    this.checked = e.target.checked
+  }
 }

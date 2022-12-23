@@ -8,7 +8,6 @@ import { Product } from './product.model';
 })
 export class AppComponent {
   product: Product
-  pipe: string = 'Vaibhav'
   constructor(){}
   
   getProduct(product: Product){
