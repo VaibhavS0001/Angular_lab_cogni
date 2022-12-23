@@ -14,6 +14,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ProductlistComponent } from './Day2/productlist/productlist.component';
+import { StarComponent } from './Day3/star/star.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ShoppingCartComponent } from './Day3/shopping-cart/shopping-cart.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { RepeatDataPipe } from './repeat-data.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +28,9 @@ import { ProductlistComponent } from './Day2/productlist/productlist.component';
     WelcomeComponent,
     AnimalListComponent,
     ProductlistComponent,
+    StarComponent,
+    ShoppingCartComponent,
+    RepeatDataPipe,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +41,10 @@ import { ProductlistComponent } from './Day2/productlist/productlist.component';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

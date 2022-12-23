@@ -1,15 +1,27 @@
 <mat-tab-group>
-  <mat-tab label="Day3"></mat-tab> 
-  <mat-tab label="Day2 Bindings & Directives in Angular">
+  <mat-tab label="Day3 Pipes">
+    <h1 class="text-center">Pipes Demo</h1>
+    {{ pipe | repeatData : 3 }}
+  </mat-tab>
+
+  <mat-tab label="Day2 & Day3">
     <mat-tab-group>
-      <mat-tab label="Products">
-        <app-productlist></app-productlist>
+      <mat-tab label="Cart">
+        <app-shopping-cart [cartProduct]="product"></app-shopping-cart>
       </mat-tab>
+
+      <mat-tab label="Products">
+        <app-productlist
+          (productClicked)="getProduct($event)"
+        ></app-productlist>
+      </mat-tab>
+
       <mat-tab label="Animals">
         <app-animal-list></app-animal-list>
       </mat-tab>
     </mat-tab-group>
   </mat-tab>
+
   <mat-tab label="Day1 Basics of Angular">
     <div class="container">
       <div class="flex1">
