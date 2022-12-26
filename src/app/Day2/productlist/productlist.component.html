@@ -6,6 +6,7 @@
       <mat-label>Filter By Category</mat-label>
       <input matInput [(ngModel)]="sCategory" (keyup)="filter()" />
     </mat-form-field>
+    <button class="m-1" mat-raised-button color="primary" (click)="log()">Log</button>
     <table *ngIf="productData.length" class="table table-striped shadow-lg">
       <thead>
         <tr>

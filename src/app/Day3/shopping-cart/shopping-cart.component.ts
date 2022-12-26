@@ -63,7 +63,11 @@ export class ShoppingCartComponent implements OnChanges, OnInit {
         if (this.productData[i].id == this.cartProduct.id) {
           this.snackBar.open(
             'this product has already been added to cart',
-            'close'
+            'close',
+            {
+              duration: 2000,
+              // panelClass: ['blue-snackbar']
+            }
           );
           count++;
         }
@@ -71,7 +75,11 @@ export class ShoppingCartComponent implements OnChanges, OnInit {
       if (count == 0) {
         this.snackBar.open(
           'Product is added go to cart to check it out',
-          'close'
+          'close',
+          {
+            duration: 2000,
+            // panelClass: ['blue-snackbar']
+          }
         );
         this.productData.push({ ...this.cartProduct, quantity: 1 });
       }
@@ -89,7 +97,7 @@ export class ShoppingCartComponent implements OnChanges, OnInit {
   }
 
   add(id: number) {
-    let sum = 0
+    let sum = 0;
     this.productData.forEach((product) => {
       if (product.id == id) {
         let ac = product.price / product.quantity;
@@ -100,20 +108,26 @@ export class ShoppingCartComponent implements OnChanges, OnInit {
       sum += product.price;
     });
 
-    this.total = sum
+    this.total = sum;
   }
 
   remove(id: number) {
-    let sum = 0
-    this.productData.forEach((product) => {
+    let sum = 0;
+    this.productData.forEach((product, i) => {
       if (product.id == id && product.quantity > 1) {
         let ac = product.price / product.quantity;
         product.quantity -= 1;
         ac *= product.quantity;
         product.price = ac;
+      }else if(product.id == id && product.quantity == 1){
+        this.productData.splice(i,1)
       }
-      sum += product.price;
     });
-    this.total = sum
+
+    this.productData.forEach(product =>{
+      sum += product.price;
+    })
+
+    this.total = sum;
   }
 }
