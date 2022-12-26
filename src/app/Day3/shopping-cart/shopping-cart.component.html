@@ -19,11 +19,11 @@
             <td>{{ i.price | currency : "INR" }}</td>
             <td>
               <div class="div">
-                <button mat-mini-fab color="white" (click)="remove(i.id)">
+                <button mat-mini-fab color="white" class="remove" (click)="remove(i.id)">
                   <mat-icon>remove</mat-icon>
                 </button>
-                {{ i.quantity }}
-                <button mat-mini-fab color="white" (click)="add(i.id)">
+                <span class="adjust">{{ i.quantity }}</span>
+                <button mat-mini-fab color="white" class="remove" (click)="add(i.id)">
                   <mat-icon>add</mat-icon>
                 </button>
               </div>

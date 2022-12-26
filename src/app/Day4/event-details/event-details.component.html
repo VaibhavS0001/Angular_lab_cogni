@@ -1,0 +1,52 @@
+<mat-card class="m-4 example-card shadow-lg">
+  <mat-card-header>
+    <mat-card-title>{{ eventDets.name }}</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <br />
+  <mat-card-content>
+    <div class="display-flex">
+      <p class="flex1">Date:</p>
+      <p class="flex1">{{ eventDets.date }}</p>
+    </div>
+
+    <div class="display-flex">
+      <p class="flex1">Time:</p>
+      <p class="flex1">{{ eventDets.time }}</p>
+    </div>
+
+    <div class="display-flex">
+      <p class="flex1">Location:</p>
+      <p class="flex1">
+        {{ eventDets.location.address }}, {{ eventDets.location.city }},
+        {{ eventDets.location.country }}
+      </p>
+    </div>
+    <mat-divider></mat-divider>
+    <br />
+    <p class="flex1">
+      <strong>Session Details</strong>
+    </p>
+    <div class="display-flex">
+      <p class="flex1">Session Name:</p>
+      <p class="flex1">
+        {{ eventDets.sessions.name }}
+      </p>
+    </div>
+
+    <div class="display-flex">
+      <p class="flex1">Session Duration:</p>
+      <p class="flex1">{{ eventDets.sessions.duration }}</p>
+    </div>
+
+    <div class="display-flex">
+      <p class="flex1">Presenter:</p>
+      <p class="flex1">{{ eventDets.sessions.presenter }}</p>
+    </div>
+
+    <fieldset class="reverse display-flex">
+      <legend class="reverse">Voters:</legend>
+      <span class="flex1" *ngFor="let v of eventDets.sessions.voter">{{ v }}</span>
+    </fieldset>
+  </mat-card-content>
+</mat-card>

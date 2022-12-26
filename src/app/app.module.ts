@@ -21,6 +21,11 @@ import { ShoppingCartComponent } from './Day3/shopping-cart/shopping-cart.compon
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RepeatDataPipe } from './repeat-data.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { NavComponent } from './Day4/nav/nav.component';
+import { EventsComponent } from './Day4/events/events.component';
+import { EventDetailsComponent } from './Day4/event-details/event-details.component';
+import { MatCardModule } from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,10 @@ import { HttpClientModule } from '@angular/common/http';
     ProductlistComponent,
     StarComponent,
     ShoppingCartComponent,
-    RepeatDataPipe
+    RepeatDataPipe,
+    NavComponent,
+    EventsComponent,
+    EventDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +54,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatTooltipModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent],

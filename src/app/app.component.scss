@@ -18,3 +18,7 @@ h1{
 .flex1{
     flex: 1;
 }
+
+::ng-deep mat-tab-body{
+    min-height: 86vh !important;
+}
