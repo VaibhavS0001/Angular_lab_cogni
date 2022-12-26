@@ -2,4 +2,4 @@
 
 These are HTML, CSS, JavaScript and TypeScript labs
 
-to check Angular apps switch branch to angular
+to check Angular apps switch branch to angular.
