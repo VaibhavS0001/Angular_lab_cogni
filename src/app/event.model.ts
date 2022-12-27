@@ -6,12 +6,14 @@ export interface Events {
   price: number;
   imageURL: string;
   location: { address: string; city: string; country: string };
-  sessions: {
-    id: number;
-    name: string;
-    presenter: string;
-    duration: string;
-    level: string;
-    voter: Array<string>;
-  };
+  sessions: [
+    {
+      id: number;
+      name: string;
+      presenter: string;
+      duration: string;
+      level: string;
+      voter: Array<string>;
+    }
+  ];
 }

@@ -5,6 +5,10 @@
   <mat-divider></mat-divider>
   <br />
   <mat-card-content>
+    <img mat-card-image [src]="eventDets.imageURL" alt="" />
+    <br />
+    <br />
+
     <div class="display-flex">
       <p class="flex1">Date:</p>
       <p class="flex1">{{ eventDets.date }}</p>
@@ -22,31 +26,47 @@
         {{ eventDets.location.country }}
       </p>
     </div>
-    <mat-divider></mat-divider>
     <br />
     <p class="flex1">
       <strong>Session Details</strong>
     </p>
-    <div class="display-flex">
-      <p class="flex1">Session Name:</p>
-      <p class="flex1">
-        {{ eventDets.sessions.name }}
-      </p>
+    <mat-divider></mat-divider>
+    <br />
+    <div *ngFor="let sessions of eventDets.sessions; let i = index">
+      <strong> session {{ i + 1 }} </strong>
+      <br />
+      <br />
+      <div class="display-flex">
+        <p class="flex1">Session Name:</p>
+        <p class="flex1">
+          {{ sessions.name }}
+        </p>
+      </div>
+
+      <div class="display-flex">
+        <p class="flex1">Session Duration:</p>
+        <p class="flex1">{{ sessions.duration }}</p>
+      </div>
+
+      <div class="display-flex">
+        <p class="flex1">Presenter:</p>
+        <p class="flex1">{{ sessions.presenter }}</p>
+      </div>
+
+      <fieldset class="reverse display-flex">
+        <legend class="reverse">Voters:</legend>
+        <span class="flex1" *ngFor="let v of sessions.voter">{{ v }}</span>
+      </fieldset>
+      <br />
+      <mat-divider></mat-divider>
+      <br />
     </div>
+    <br />
 
     <div class="display-flex">
-      <p class="flex1">Session Duration:</p>
-      <p class="flex1">{{ eventDets.sessions.duration }}</p>
+      <button mat-raised-button class="flex1">
+        Register {{ eventDets.price | currency : "INR" }}
+      </button>
     </div>
-
-    <div class="display-flex">
-      <p class="flex1">Presenter:</p>
-      <p class="flex1">{{ eventDets.sessions.presenter }}</p>
-    </div>
-
-    <fieldset class="reverse display-flex">
-      <legend class="reverse">Voters:</legend>
-      <span class="flex1" *ngFor="let v of eventDets.sessions.voter">{{ v }}</span>
-    </fieldset>
   </mat-card-content>
 </mat-card>
