@@ -28,6 +28,9 @@ export class ProductlistComponent implements OnInit {
   }
 
   log() {
+    this.pService.deleteProduct(1).subscribe(data=>{
+      console.log(data)
+    })
     this.logger.log('this is a normal log');
     this.logger.warnlog('this is a warn log');
     this.logger.errorlog('this is a error log');

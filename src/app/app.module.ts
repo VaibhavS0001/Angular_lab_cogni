@@ -25,7 +25,11 @@ import { NavComponent } from './Day4/nav/nav.component';
 import { EventsComponent } from './Day4/events/events.component';
 import { EventDetailsComponent } from './Day4/event-details/event-details.component';
 import { MatCardModule } from '@angular/material/card';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
+import { DialogComponent } from './dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { DataService } from './shared/data.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,7 @@ import {MatDividerModule} from '@angular/material/divider';
     NavComponent,
     EventsComponent,
     EventDetailsComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatSnackBarModule,
     HttpClientModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule,
+    HttpClientInMemoryWebApiModule.forRoot(DataService),
   ],
   providers: [],
   bootstrap: [AppComponent],

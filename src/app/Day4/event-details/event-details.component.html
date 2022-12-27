@@ -53,6 +53,11 @@
         <p class="flex1">{{ sessions.presenter }}</p>
       </div>
 
+      <!-- <button  matTooltip="{{sessions.voter.join}}" mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+        <mat-icon>how_to_vote</mat-icon>
+      </button> -->
+
+
       <fieldset class="reverse display-flex">
         <legend class="reverse">Voters:</legend>
         <span class="flex1" *ngFor="let v of sessions.voter">{{ v }}</span>
@@ -64,7 +69,7 @@
     <br />
 
     <div class="display-flex">
-      <button mat-raised-button class="flex1">
+      <button mat-raised-button class="flex1" (click)="openDialog(eventDets.price)">
         Register {{ eventDets.price | currency : "INR" }}
       </button>
     </div>
