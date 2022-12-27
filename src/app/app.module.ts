@@ -30,6 +30,9 @@ import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataService } from './shared/data.service';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EverythingComponent } from './everything/everything.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,7 @@ import { DataService } from './shared/data.service';
     EventsComponent,
     EventDetailsComponent,
     DialogComponent,
+    EverythingComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,12 +61,14 @@ import { DataService } from './shared/data.service';
     MatInputModule,
     FormsModule,
     MatIconModule,
+    MatSelectModule,
     MatTooltipModule,
     MatSnackBarModule,
     HttpClientModule,
     MatCardModule,
     MatDividerModule,
     MatDialogModule,
+    ReactiveFormsModule,
     HttpClientInMemoryWebApiModule.forRoot(DataService),
   ],
   providers: [],

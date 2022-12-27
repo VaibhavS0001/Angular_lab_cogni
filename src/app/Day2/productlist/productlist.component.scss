@@ -1,8 +1,25 @@
-img:hover{
+img:hover {
     transform: scale(1.5);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-img{
+img {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.example-form {
+    min-width: 150px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.display-flex{
+    display: flex;
+}
+
+.flex1{
+    flex: 1;
 }

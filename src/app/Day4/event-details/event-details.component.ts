@@ -10,7 +10,7 @@ import { Events } from 'src/app/event.model';
 })
 export class EventDetailsComponent implements OnInit {
   @Input() eventDets: Events;
-  res
+  res: any
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
