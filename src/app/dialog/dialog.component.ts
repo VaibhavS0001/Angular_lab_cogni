@@ -9,10 +9,10 @@ import { Product } from '../product.model';
   styleUrls: ['./dialog.component.scss'],
 })
 export class DialogComponent {
-  name = new FormControl(this.data.product.name, Validators.required);
-  price = new FormControl(this.data.product.price, Validators.required);
-  category = new FormControl(this.data.product.category, Validators.required);
-  rating = new FormControl(this.data.product.rating, Validators.required);
+  name = new FormControl(this.data.product?.name, Validators.required);
+  price = new FormControl(this.data.product?.price, Validators.required);
+  category = new FormControl(this.data.product?.category, Validators.required);
+  rating = new FormControl(this.data.product?.rating, Validators.required);
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {product: Product}

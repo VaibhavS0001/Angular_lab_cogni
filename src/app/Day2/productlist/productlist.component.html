@@ -25,9 +25,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let i of productData">
+        <tr id="add" *ngFor="let i of productData">
           <td>{{ i.id }}</td>
-          <td (click)="addToShopping(i)">{{ i.name }}</td>
+          <td id="cart" (click)="addToShopping(i)">{{ i.name }}</td>
           <td>{{ i.price | currency : "INR" }}</td>
           <!-- <td>{{ i.category }}</td> -->
           <td>
@@ -87,7 +87,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline" class="flex1 m-1">
               <mat-label>Select the Category</mat-label>
-              <mat-select [formControl]="category">
+              <mat-select matInput [formControl]="category">
                 <mat-option>None</mat-option>
                 <mat-option value="electronics">Electronics</mat-option>
                 <mat-option value="decor">Decor</mat-option>

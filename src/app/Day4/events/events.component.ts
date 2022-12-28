@@ -17,7 +17,6 @@ export class EventsComponent implements OnInit {
         this.event.push(event)
       })
     })
-    console.log(this.event)
   }
 
 }

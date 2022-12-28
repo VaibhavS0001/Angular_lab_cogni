@@ -3,7 +3,7 @@
     <h1 class="text-center">Animal List</h1>
     <mat-form-field appearance="outline">
       <mat-label>Filter By Name</mat-label>
-      <input matInput [(ngModel)]="Sname" (keyup)="filter()" />
+      <input [(ngModel)]="Sname" (keyup)="filter()" matInput />
     </mat-form-field>
     <table *ngIf="ELEMENT_DATA.length" class="table table-danger">
       <thead>

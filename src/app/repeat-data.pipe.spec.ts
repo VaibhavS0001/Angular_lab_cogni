@@ -5,4 +5,11 @@ describe('RepeatDataPipe', () => {
     const pipe = new RepeatDataPipe();
     expect(pipe).toBeTruthy();
   });
+
+  it('should return mm mm ', () => {
+    const pipe = new RepeatDataPipe();
+    const data = pipe.transform("mm", 2)
+    expect(data).toEqual('mm mm ');
+  });
+
 });

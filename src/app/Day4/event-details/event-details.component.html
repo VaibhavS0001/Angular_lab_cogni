@@ -1,6 +1,6 @@
-<mat-card class="m-4 example-card shadow-lg">
+<mat-card class="m-4 example-card shadow-lg" *ngIf="eventDets">
   <mat-card-header>
-    <mat-card-title>{{ eventDets.name }}</mat-card-title>
+    <mat-card-title id="name">{{ eventDets.name }}</mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
   <br />
@@ -11,17 +11,17 @@
 
     <div class="display-flex">
       <p class="flex1">Date:</p>
-      <p class="flex1">{{ eventDets.date }}</p>
+      <p class="flex1" appHighlight = "pink">{{ eventDets.date }}</p>
     </div>
 
     <div class="display-flex">
       <p class="flex1">Time:</p>
-      <p class="flex1">{{ eventDets.time }}</p>
+      <p class="flex1" appHighlight = "red">{{ eventDets.time }}</p>
     </div>
 
     <div class="display-flex">
       <p class="flex1">Location:</p>
-      <p class="flex1">
+      <p class="flex1" appHighlight = "green">
         {{ eventDets.location.address }}, {{ eventDets.location.city }},
         {{ eventDets.location.country }}
       </p>
@@ -69,9 +69,13 @@
     <br />
 
     <div class="display-flex">
-      <button mat-raised-button class="flex1" (click)="openDialog(eventDets.price)">
+      <button mat-raised-button class="flex1">
+        <!-- (click)="openDialog(eventDets.price)" -->
         Register {{ eventDets.price | currency : "INR" }}
       </button>
     </div>
   </mat-card-content>
 </mat-card>
+
+
+<div id="data">{{eventDetstring}}</div>

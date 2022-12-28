@@ -4,14 +4,14 @@ import { AppComponent } from './app.component';
 import { ProductlistComponent } from './Day2/productlist/productlist.component';
 import { ShoppingCartComponent } from './Day3/shopping-cart/shopping-cart.component';
 import { EventsComponent } from './Day4/events/events.component';
-import { EverythingComponent } from './everything/everything.component';
+import { PStructureComponent } from './p-structure/p-structure.component';
 
 const routes: Routes = [
   { path: 'app', component: AppComponent },
   { path: 'products', component: ProductlistComponent },
   { path: 'cart', component: ShoppingCartComponent },
   { path: 'events', component: EventsComponent },
-  { path: '', component: EverythingComponent },
+  { path: '', component: PStructureComponent },
   
 ];
 

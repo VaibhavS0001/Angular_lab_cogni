@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -32,7 +32,8 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataService } from './shared/data.service';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
-import { EverythingComponent } from './everything/everything.component';
+import { PStructureComponent } from './p-structure/p-structure.component';
+import { HighlightDirective } from './Day6/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { EverythingComponent } from './everything/everything.component';
     EventsComponent,
     EventDetailsComponent,
     DialogComponent,
-    EverythingComponent,
+    PStructureComponent,
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,9 @@ import { EverythingComponent } from './everything/everything.component';
     ReactiveFormsModule,
     HttpClientInMemoryWebApiModule.forRoot(DataService),
   ],
+  exports: [ MatFormFieldModule, MatInputModule ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
