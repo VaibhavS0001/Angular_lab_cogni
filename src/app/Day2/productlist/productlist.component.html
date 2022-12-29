@@ -59,11 +59,12 @@
       <mat-divider></mat-divider>
       <br />
       <mat-card-content>
-        <form class="example-form">
+        <form [formGroup]="addForm" class="example-form">
           <div class="display-flex">
             <mat-form-field appearance="outline" class="flex1 m-1">
               <mat-label>Name</mat-label>
-              <input matInput placeholder="Placeholder" [formControl]="name" />
+              <input matInput placeholder="Placeholder" formControlName="name" />
+              <mat-error *ngIf="error">Name is Required</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline" class="flex1 m-1">
               <mat-label>Price</mat-label>
@@ -71,8 +72,9 @@
                 matInput
                 type="number"
                 placeholder="Placeholder"
-                [formControl]="price"
+                formControlName="price"
               />
+              <mat-error>Price is Required</mat-error>
             </mat-form-field>
           </div>
           <div class="display-flex">
@@ -82,18 +84,20 @@
                 matInput
                 type="number"
                 placeholder="Placeholder"
-                [formControl]="rating"
+                formControlName="rating"
               />
+              <mat-error>Rating is Required</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline" class="flex1 m-1">
               <mat-label>Select the Category</mat-label>
-              <mat-select matInput [formControl]="category">
+              <mat-select matInput formControlName="category">
                 <mat-option>None</mat-option>
                 <mat-option value="electronics">Electronics</mat-option>
                 <mat-option value="decor">Decor</mat-option>
                 <mat-option value="grocery">Grocery</mat-option>
                 <mat-option value="clothing">Clothing</mat-option>
               </mat-select>
+              <mat-error>Choose a Category</mat-error>
             </mat-form-field>
           </div>
           <div class="display-flex">
@@ -102,7 +106,7 @@
               <button mat-icon-button matPrefix (click)="f_input.click()">
                 <mat-icon>attach_file</mat-icon>
               </button>
-              <input type="text" readonly matInput [formControl]="display" />
+              <input type="text" readonly matInput [formControl] = "display" />
               <input
                 type="file"
                 multiple
@@ -116,7 +120,7 @@
         </form>
       </mat-card-content>
       <mat-card-actions class="display-flex">
-        <button class="m-1 flex1" mat-raised-button (click)="create()">
+        <button class="m-1 flex1" mat-raised-button [disabled]="this.addForm.invalid" (click)="create()">
           Add Product
         </button>
       </mat-card-actions>

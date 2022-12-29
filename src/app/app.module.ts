@@ -34,6 +34,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PStructureComponent } from './p-structure/p-structure.component';
 import { HighlightDirective } from './Day6/highlight.directive';
+import { EmployeeComponent } from './Day7/employee/employee.component';
+import { TrusteeComponent } from './Day7/trustee/trustee.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BookComponent } from './Day7/book/book.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -51,15 +58,21 @@ import { HighlightDirective } from './Day6/highlight.directive';
     DialogComponent,
     PStructureComponent,
     HighlightDirective,
+    EmployeeComponent,
+    TrusteeComponent,
+    BookComponent,
   ],
   imports: [
     BrowserModule,
+    MatRadioModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTableModule,
     MatTabsModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatNativeDateModule, 
+    MatDatepickerModule,
     MatInputModule,
     FormsModule,
     MatIconModule,
@@ -73,8 +86,8 @@ import { HighlightDirective } from './Day6/highlight.directive';
     ReactiveFormsModule,
     HttpClientInMemoryWebApiModule.forRoot(DataService),
   ],
-  exports: [ MatFormFieldModule, MatInputModule ],
-  providers: [],
+  exports: [MatFormFieldModule, MatInputModule],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

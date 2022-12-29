@@ -13,7 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { category } from 'src/app/product.model';
+import { category } from 'src/app/model/product.model';
 
 describe('ProductlistComponent', () => {
   let component: ProductlistComponent;

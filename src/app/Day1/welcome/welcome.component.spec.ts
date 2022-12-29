@@ -25,9 +25,9 @@ describe('WelcomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display Vaibhav Sharma', () => {
+  it('should display Vaibhav Sharma 3 times', () => {
     const h1 = fixture.debugElement.query(By.css('h1')).nativeElement;
-    expect(h1.textContent).toContain('Vaibhav Sharma');
+    expect(h1.textContent).toEqual('Vaibhav Sharma Vaibhav Sharma Vaibhav Sharma ');
   });
 
 });

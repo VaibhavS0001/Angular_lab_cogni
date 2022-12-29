@@ -9,7 +9,7 @@ import {
 } from '@angular/material/card';
 import { MatDivider } from '@angular/material/divider';
 import { By } from '@angular/platform-browser';
-import { Events } from 'src/app/event.model';
+import { Events } from 'src/app/model/event.model';
 
 import { EventDetailsComponent } from './event-details.component';
 

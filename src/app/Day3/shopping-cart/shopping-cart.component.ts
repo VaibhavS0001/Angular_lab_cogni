@@ -6,7 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { category, Product } from 'src/app/product.model';
+import { category, Product } from '../../model/product.model';
 
 @Component({
   selector: 'app-shopping-cart',

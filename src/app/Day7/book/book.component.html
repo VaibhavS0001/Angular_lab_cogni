@@ -1,0 +1,92 @@
+<mat-card class="m-auto my-5 shadow-lg w-50">
+  <mat-card-header>
+    <mat-card-title> Books </mat-card-title>
+  </mat-card-header>
+  <br />
+  <mat-divider></mat-divider>
+  <br />
+  <mat-card-content>
+    <form [formGroup]="bookForm">
+      <div class="d-flex">
+        <mat-form-field appearance="outline" class="m-1">
+          <mat-label>Id</mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder="Enter an Id"
+            formControlName="id"
+          />
+          <mat-error *ngIf="bookForm.get('id').errors?.required"
+            >Id is Required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="m-1">
+          <mat-label>Title</mat-label>
+          <input
+            matInput
+            placeholder="Enter the title"
+            formControlName="title"
+          />
+          <mat-error *ngIf="bookForm.get('title').errors?.required"
+            >title is Required</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="m-1">
+          <mat-label>Date Of Publishing</mat-label>
+          <input
+            matInput
+            class="form-control"
+            type="date"
+            formControlName="dop"
+          />
+          <mat-error>Date of Publishing is Required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div formGroupName="author">
+        <mat-form-field appearance="outline" class="m-1">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            placeholder="Enter your Name"
+            formControlName="name"
+          />
+          <mat-error *ngIf="bookForm.get('author.name').errors?.required"
+            >Name is Required</mat-error
+          >
+          <mat-error *ngIf="bookForm.get('author.name').errors?.pattern"
+            >First Letter Must Be Capitalized</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="m-1">
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            matInput
+            placeholder="Enter email"
+            formControlName="email"
+          />
+          <mat-error *ngIf="bookForm.get('author.email').errors?.required"
+            >Email is Required</mat-error
+          >
+          <mat-error *ngIf="bookForm.get('author.email').errors?.email"
+            >Formt should be abc@xyz.com</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      class="m-2"
+      [disabled]="!this.bookForm.valid"
+      mat-raised-button
+      (click)="Register()"
+    >
+      Register
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<!-- <div class="m-auto" *ngIf="data">{{ data }}</div> -->

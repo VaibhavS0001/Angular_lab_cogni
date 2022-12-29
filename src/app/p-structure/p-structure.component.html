@@ -1,34 +1,47 @@
 <mat-tab-group>
-    <mat-tab label="Day4(Events)">
-      <app-events></app-events>
-    </mat-tab>
-  
-    <mat-tab label="Day5(CRUD) - Day4(Services) - Day3(Cart) - Day2(Products)">
-      <mat-tab-group>
-        <mat-tab label="Cart">
-          <app-shopping-cart [cartProduct]="product"></app-shopping-cart>
-        </mat-tab>
-  
-        <mat-tab label="Products">
-          <app-productlist
-            (productClicked)="getProduct($event)"
-          ></app-productlist>
-        </mat-tab>
-  
-        <mat-tab label="Animals">
-          <app-animal-list></app-animal-list>
-        </mat-tab>
-      </mat-tab-group>
-    </mat-tab>
-  
-    <mat-tab label="Day1(Basics of Angular)">
-      <div class="container">
-        <div class="flex1">
-          <h1>This is App Component</h1>
-        </div>
-        <app-pent-house class="flex1"></app-pent-house>
-        <app-welcome class="flex1"></app-welcome>
+  <mat-tab label="Day6(Forms)">
+    <mat-tab-group>
+      <mat-tab label="Books(Reactive-Forms)">
+        <app-book></app-book>
+      </mat-tab>
+      <mat-tab label="Trustee(Template-Forms)">
+        <app-trustee></app-trustee>
+      </mat-tab>
+      <mat-tab label="Employee(Rective-Forms)">
+        <app-employee></app-employee>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-tab>
+
+  <mat-tab label="Day4(Events)">
+    <app-events></app-events>
+  </mat-tab>
+
+  <mat-tab label="Day5(CRUD) - Day4(Services) - Day3(Cart) - Day2(Products)">
+    <mat-tab-group>
+      <mat-tab label="Cart">
+        <app-shopping-cart [cartProduct]="product"></app-shopping-cart>
+      </mat-tab>
+
+      <mat-tab label="Products">
+        <app-productlist
+          (productClicked)="getProduct($event)"
+        ></app-productlist>
+      </mat-tab>
+
+      <mat-tab label="Animals">
+        <app-animal-list></app-animal-list>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-tab>
+
+  <mat-tab label="Day1(Basics of Angular)">
+    <div class="container">
+      <div class="flex1">
+        <h1>This is App Component</h1>
       </div>
-    </mat-tab>
-  </mat-tab-group>
-  
+      <app-pent-house class="flex1"></app-pent-house>
+      <app-welcome class="flex1"></app-welcome>
+    </div>
+  </mat-tab>
+</mat-tab-group>

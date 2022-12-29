@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogComponent } from 'src/app/dialog/dialog.component';
-import { category, Product } from 'src/app/product.model';
+import { category, Product } from 'src/app/model/product.model';
 import { LoggingService } from 'src/app/shared/logging.service';
 import { ProductService } from 'src/app/shared/product.service';
 
@@ -21,16 +21,15 @@ export class ProductlistComponent implements OnInit {
   temp2 = this.productData;
   switch: boolean = false;
   button: string = 'Add Product';
-  name = new FormControl('', Validators.required);
-  price = new FormControl('', Validators.required);
   display = new FormControl('', Validators.required);
-  category = new FormControl('', Validators.required);
-  rating = new FormControl('', Validators.required);
   file_store: FileList;
   file_list: Array<string> = [];
-  res: any
-  
+  res: any;
+  addForm: any;
+  error: boolean
+
   constructor(
+    private fb: FormBuilder,
     private pService: ProductService,
     private logger: LoggingService,
     private snackBar: MatSnackBar,
@@ -38,11 +37,32 @@ export class ProductlistComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initLoginForm();
     this.pService.getProducts().subscribe((data) => {
       data.forEach((product) => {
         this.productData.push(product);
       });
     });
+  }
+
+  initLoginForm() {
+    this.addForm = this.fb.group({
+      name: ['', Validators.required],
+      price: ['', Validators.required],
+      category: ['', Validators.required],
+      rating: ['', Validators.required],
+    });
+    // this.addForm.value
+  }
+
+  isPristine(): boolean {
+    return this.addForm.pristine;
+  }
+  isTouched(): boolean {
+    return this.addForm.touched;
+  }
+  isValid(): boolean {
+    return this.addForm.valid;
   }
 
   add() {
@@ -59,35 +79,37 @@ export class ProductlistComponent implements OnInit {
   }
 
   create() {
-    let cat: category;
-    if (this.category.value == 'clothing') {
-      cat = category.clothing;
-    } else if (this.category.value == 'electronics') {
-      cat = category.electronics;
-    } else if (this.category.value == 'decor') {
-      cat = category.decor;
-    } else {
-      cat = category.grocery;
+    if (this.isTouched() && this.isValid()) {
+      let cat: category;
+      if (this.addForm.value.category == 'clothing') {
+        cat = category.clothing;
+      } else if (this.addForm.value.category == 'electronics') {
+        cat = category.electronics;
+      } else if (this.addForm.value.category == 'decor') {
+        cat = category.decor;
+      } else {
+        cat = category.grocery;
+      }
+      let product: Product = {
+        id: this.getRandomInt(1000),
+        name: this.addForm.value.name,
+        price: parseInt(this.addForm.value.price),
+        category: cat,
+        rating: parseInt(this.addForm.value.rating),
+        image: `assets/images/${this.file_store[0].name}`,
+      };
+      this.pService.createProduct(product).subscribe((data) => {
+        this.productData.push(data);
+        this.snackBar.open(
+          'New Product is created successfully with id ' + data.id,
+          'close',
+          {
+            duration: 2000,
+            // panelClass: ['blue-snackbar']
+          }
+        );
+      });
     }
-    let product: Product = {
-      id: this.getRandomInt(1000),
-      name: this.name.value,
-      price: parseInt(this.price.value),
-      category: cat,
-      rating: parseInt(this.rating.value),
-      image: `assets/images/${this.file_store[0].name}`,
-    };
-    this.pService.createProduct(product).subscribe((data) => {
-      this.productData.push(data);
-      this.snackBar.open(
-        'New Product is created successfully with id ' + data.id,
-        'close',
-        {
-          duration: 2000,
-          // panelClass: ['blue-snackbar']
-        }
-      );
-    });
   }
 
   log() {
@@ -136,7 +158,6 @@ export class ProductlistComponent implements OnInit {
         }
       });
     });
-    
   }
 
   OnclickRating(msg: string): void {

@@ -6,7 +6,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 export class HighlightDirective {
   @Input() appHighlight = '';
   constructor(private el: ElementRef) {
-    this.el.nativeElement.style.backgroundColor = 'pink';
+    this.el.nativeElement.style.backgroundColor = '';
   }
 
   @HostListener('mouseenter') onMouseEnter() {
