@@ -24,7 +24,7 @@ export class BookComponent {
         name: ['', [Validators.required, Validators.pattern('[A-Z][a-z]*')]],
         email: ['abc@xyz.com', [Validators.required, Validators.email]],
       }),
-      dop: ['', Validators.required],
+      dop: ['2022-05-12', Validators.required],
     });
   }
 

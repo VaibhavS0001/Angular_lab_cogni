@@ -41,6 +41,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BookComponent } from './Day7/book/book.component';
 import { DatePipe } from '@angular/common';
+import { StudentsComponent } from './Day8/students/students.component';
+import { PageNotFoundComponent } from './Day8/page-not-found/page-not-found.component';
+import { StudentListComponent } from './Day8/student-list/student-list.component';
+import { StudentDetailsComponent } from './Day8/student-details/student-details.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +65,10 @@ import { DatePipe } from '@angular/common';
     EmployeeComponent,
     TrusteeComponent,
     BookComponent,
+    StudentsComponent,
+    PageNotFoundComponent,
+    StudentListComponent,
+    StudentDetailsComponent,
   ],
   imports: [
     BrowserModule,

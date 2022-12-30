@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Current Events</a>
+      <a class="navbar-brand" href="#">{{title}}</a>
     <span class="example-spacer"></span>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,9 +9,7 @@
       
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <button type="button" class="m-1 btn btn-outline-light nav-link">Events</button>
-            <button type="button" class="m-1 btn btn-outline-light nav-link">Create Event</button>
-            <button type="button" class="m-1 btn btn-outline-light nav-link">All Events</button>
+            <button type="button" class="m-1 btn btn-outline-light nav-link" routerLink={{link}} *ngFor="let link of links">{{link}}</button>
         </div>
       </div>
     </div>

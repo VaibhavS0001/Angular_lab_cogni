@@ -1,0 +1,108 @@
+<mat-card class="m-auto my-5 shadow-lg w-75">
+  <mat-card-header>
+    <mat-card-title> Student Form </mat-card-title>
+  </mat-card-header>
+  <br />
+  <mat-divider></mat-divider>
+  <br />
+  <mat-card-content>
+    <form [formGroup]="studForm">
+      <div formArrayName="students">
+        <div *ngFor="let student of students().controls; let studIndex = index">
+          <mat-card class="m-2 shadow-lg">
+            <mat-card-header>
+              <mat-card-title>Student {{ studIndex + 1 }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div [formGroupName]="studIndex">
+                <div class="d-flex">
+                  <mat-form-field appearance="outline" class="m-1 flex1">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Enter your first name" formControlName="name" />
+                    <mat-error *ngIf="students().at(studIndex).get('name').errors?.['required']">Name is
+                      Required</mat-error>
+                    <mat-error *ngIf="students().at(studIndex).get('name').errors?.['pattern']">First letter must be
+                      Capitalized</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" class="m-1 flex1">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" placeholder="Enter your email" formControlName="email" />
+                    <mat-error *ngIf="students().at(studIndex).get('email').errors?.['required']">Email is
+                      Required</mat-error>
+                    <mat-error *ngIf="students().at(studIndex).get('email').errors?.['email']">Format for email should
+                      be avc@xyz.com</mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div formArrayName="programs">
+                  <div *ngFor="
+                      let program of studentPrograms(studIndex).controls;
+                      let pIndex = index
+                    ">
+                    <mat-card class="m-4">
+                      <mat-card-header>
+                        <mat-card-title>
+                          Program {{ pIndex + 1 }}
+                        </mat-card-title>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <div [formGroupName]="pIndex">
+                          <div class="d-flex">
+                            <mat-form-field appearance="outline" class="m-1 flex1">
+                              <mat-label>Program Name</mat-label>
+                              <input matInput placeholder="Enter program name" formControlName="programName" />
+                              <mat-error>Program Name is requried</mat-error>
+                            </mat-form-field>
+                            <!-- <mat-form-field appearance="outline" class="m-1"> -->
+                            <!-- </mat-form-field> -->
+
+                            <mat-form-field appearance="outline" class="m-1 flex1">
+                              <mat-label>duration</mat-label>
+                              <mat-select formControlName="duration">
+                                <mat-option value="1 hour">1 hour</mat-option>
+                                <mat-option value="2 hour">2 hour</mat-option>
+                                <mat-option value="3 hour">3 hour</mat-option>
+                                <mat-option value="4 hour">4 hour</mat-option>
+                                <mat-option value="5 hour">5 hour</mat-option>
+                              </mat-select>
+                              <mat-error>Program duration is required</mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+                      </mat-card-content>
+                      <mat-card-actions>
+                        <button class="m-2" mat-raised-button (click)="removeProgram(studIndex, pIndex)">
+                          Remove Program
+                        </button>
+                      </mat-card-actions>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button class="m-2" mat-raised-button (click)="removeStudent(studIndex)">
+                Remove Student
+              </button>
+
+              <button class="m-2" mat-raised-button type="button" (click)="addProgram(studIndex)">
+                Add Program
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button class="m-2" mat-raised-button type="button" (click)="addStudent()">
+      Add Student
+    </button>
+    <button class="m-2" [disabled]="!this.studForm.valid || this.students().controls.length == 0" mat-raised-button
+      (click)="Register()">
+      Register
+    </button>
+  </mat-card-actions>
+</mat-card>
+<!-- <div class="m-auto" *ngIf="data">{{ data }}</div> -->

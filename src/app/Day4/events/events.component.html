@@ -1,4 +1,4 @@
-<app-nav></app-nav>
+<app-nav [title]="title" [links]="links"></app-nav>
 
 <div class="display-flex">
     <app-event-details *ngFor="let e of event" class="flex1" [eventDets]="e"></app-event-details>

@@ -23,7 +23,7 @@ export class TrusteeComponent implements OnInit {
     };
     setTimeout(() => {
       this.tForm.setValue(this.trustee);
-      console.log(this.tForm.value);
+      // console.log(this.tForm.value);
     }, 2000);
   }
   register(data: any): void {

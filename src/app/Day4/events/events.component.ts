@@ -9,6 +9,8 @@ import { EventService } from 'src/app/shared/event.service';
 })
 export class EventsComponent implements OnInit {
   event: Events[] = [];
+  title = "Current Events"
+  links = ["events", "Create events", "All events"] 
   constructor(private events: EventService){
   }
   ngOnInit(): void {

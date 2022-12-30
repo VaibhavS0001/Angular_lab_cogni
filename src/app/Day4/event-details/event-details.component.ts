@@ -11,7 +11,7 @@ export class EventDetailsComponent implements OnInit {
   eventDetstring: any
   constructor() {}
   ngOnInit(): void {
-    console.log(this.eventDets)
+    // console.log(this.eventDets)
   }
 
 }

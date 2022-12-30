@@ -11,6 +11,7 @@ export class PStructureComponent {
   constructor() {}
 
   getProduct(product: Product) {
+    console.log(product)
     this.product = product;
   }
 }
