@@ -1,3 +1,25 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">{{title}}</a>
+  <span class="example-spacer"></span>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <mat-form-field appearance="outline">
+          <mat-label>Role</mat-label>
+          <mat-select matInput required [(value)]="selected">
+            <mat-option value="admin">Admin</mat-option>
+            <mat-option value="user">User</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</nav>
 <div class="container h100">
   <div class="m-auto pt-5">
     <h1 class="text-center">{{ title }}</h1>
@@ -6,7 +28,7 @@
       <mat-label>Filter By Category</mat-label>
       <input matInput [(ngModel)]="sCategory" (keyup)="filter()" />
     </mat-form-field>
-    <button class="m-1" mat-raised-button color="primary" (click)="add()">
+    <button class="m-1" mat-raised-button color="primary" *ngIf="selected == 'admin'" (click)="add()">
       {{ button }}
     </button>
     <table
@@ -27,7 +49,7 @@
       <tbody>
         <tr id="add" *ngFor="let i of productData">
           <td>{{ i.id }}</td>
-          <td id="cart" (click)="addToShopping(i)">{{ i.name }}</td>
+          <td id="cart">{{ i.name }}</td>
           <td>{{ i.price | currency : "INR" }}</td>
           <!-- <td>{{ i.category }}</td> -->
           <td>
@@ -46,84 +68,11 @@
             />
             <!-- matTooltip = "{{i.category == category.electronic ? 'this is a {{i.category}} product' : 'this is an {{i.category}} product'}}" -->
           </td>
-          <td><mat-icon (click)="updateProduct(i)">edit</mat-icon></td>
-          <td><mat-icon (click)="deleteProduct(i.id)">delete</mat-icon></td>
+          <td class="text-center"><mat-icon (click)="addToShopping(i)">shopping_cart</mat-icon></td>
+          <td><mat-icon  *ngIf="selected == 'admin'" (click)="updateProduct(i)">edit</mat-icon></td>
+          <td><mat-icon  *ngIf="selected == 'admin'" (click)="deleteProduct(i.id)">delete</mat-icon></td>
         </tr>
       </tbody>
     </table>
-
-    <mat-card *ngIf="switch">
-      <mat-card-header>
-        <mat-card-title>Add Products</mat-card-title>
-      </mat-card-header>
-      <mat-divider></mat-divider>
-      <br />
-      <mat-card-content>
-        <form [formGroup]="addForm" class="example-form">
-          <div class="display-flex">
-            <mat-form-field appearance="outline" class="flex1 m-1">
-              <mat-label>Name</mat-label>
-              <input matInput placeholder="Placeholder" formControlName="name" />
-              <mat-error *ngIf="error">Name is Required</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="flex1 m-1">
-              <mat-label>Price</mat-label>
-              <input
-                matInput
-                type="number"
-                placeholder="Placeholder"
-                formControlName="price"
-              />
-              <mat-error>Price is Required</mat-error>
-            </mat-form-field>
-          </div>
-          <div class="display-flex">
-            <mat-form-field appearance="outline" class="flex1 m-1">
-              <mat-label>Rating</mat-label>
-              <input
-                matInput
-                type="number"
-                placeholder="Placeholder"
-                formControlName="rating"
-              />
-              <mat-error>Rating is Required</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="flex1 m-1">
-              <mat-label>Select the Category</mat-label>
-              <mat-select matInput formControlName="category">
-                <mat-option>None</mat-option>
-                <mat-option value="electronics">Electronics</mat-option>
-                <mat-option value="decor">Decor</mat-option>
-                <mat-option value="grocery">Grocery</mat-option>
-                <mat-option value="clothing">Clothing</mat-option>
-              </mat-select>
-              <mat-error>Choose a Category</mat-error>
-            </mat-form-field>
-          </div>
-          <div class="display-flex">
-            <mat-form-field appearance="outline" class="flex1">
-              <mat-label>Image</mat-label>
-              <button mat-icon-button matPrefix (click)="f_input.click()">
-                <mat-icon>attach_file</mat-icon>
-              </button>
-              <input type="text" readonly matInput [formControl] = "display" />
-              <input
-                type="file"
-                multiple
-                hidden
-                #f_input
-                (change)="handleFileInputChange(f_input.files)"
-              />
-              <mat-error>this field is required</mat-error>
-            </mat-form-field>
-          </div>
-        </form>
-      </mat-card-content>
-      <mat-card-actions class="display-flex">
-        <button class="m-1 flex1" mat-raised-button [disabled]="this.addForm.invalid" (click)="create()">
-          Add Product
-        </button>
-      </mat-card-actions>
-    </mat-card>
   </div>
 </div>

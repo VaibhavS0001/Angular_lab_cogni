@@ -1,7 +1,7 @@
 <div class="container h100">
     <div class="m-auto pt-5">
       <h1 class="text-center">{{title}}</h1>
-      <table *ngIf="productData.length" class="table table-striped shadow-lg">
+      <table *ngIf="productData?.length" class="table table-striped shadow-lg">
         <thead>
           <tr>
             <th>Id</th>
@@ -48,7 +48,7 @@
         </tbody>
       </table>
     </div>
-    <div *ngIf="productData.length" class="m-auto pt-2 shadow-lg rounded display-flex">
+    <div *ngIf="productData?.length" class="m-auto pt-2 shadow-lg rounded display-flex">
       <h2 class="text-center">CheckOut</h2>
         <div class="d-flex m-1">
           <h3 class="p-2 m-1 flex1">Total </h3>

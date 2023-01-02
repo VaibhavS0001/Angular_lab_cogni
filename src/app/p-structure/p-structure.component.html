@@ -1,6 +1,5 @@
 <mat-tab-group>
-
-  <mat-tab label = "Day8(Form-Array)">
+  <mat-tab label="Day8(Form-Array)">
     <app-students></app-students>
   </mat-tab>
 
@@ -24,14 +23,14 @@
 
   <mat-tab label="Day5(CRUD) - Day4(Services) - Day3(Cart) - Day2(Products)">
     <mat-tab-group>
-      <mat-tab label="Cart">
-        <app-shopping-cart [cartProduct]="product"></app-shopping-cart>
-      </mat-tab>
-
       <mat-tab label="Products">
         <app-productlist
           (productClicked)="getProduct($event)"
         ></app-productlist>
+      </mat-tab>
+
+      <mat-tab label="Cart">
+        <app-shopping-cart [cartProduct]="product"></app-shopping-cart>
       </mat-tab>
 
       <mat-tab label="Animals">

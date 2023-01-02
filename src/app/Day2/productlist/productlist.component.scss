@@ -16,10 +16,27 @@ img {
     width: 100%;
 }
 
-.display-flex{
+.display-flex {
     display: flex;
 }
 
-.flex1{
+.flex1 {
     flex: 1;
+}
+
+:root {
+    --bs-navbar-color: rgba(255, 255, 255, 0.55);
+    --bs-navbar-color-change: rgba(255, 255, 255, 0.148);
+}
+
+.example-spacer {
+    flex: 50;
+}
+
+.bg-custom {
+    background-color: #e3f2fd;
+}
+
+.nav-link:hover {
+    color: var(--bs-nav-link-color-change);
 }

@@ -1,10 +1,10 @@
 <h1 mat-dialog-title> Update Data </h1>
 <div mat-dialog-content>
-  <form class="example-form">
+  <form class="example-form" [formGroup]="this.data.button === 'Add Product' ? addProduct : updateProduct">
     <div class="display-flex">
       <mat-form-field appearance="outline" class="flex1 m-1">
         <mat-label>Name</mat-label>
-        <input id="name" matInput placeholder="Placeholder" [formControl]="name" />
+        <input id="name" matInput placeholder="Placeholder" formControlName="name" />
       </mat-form-field>
       <mat-form-field appearance="outline" class="flex1 m-1">
         <mat-label>Price</mat-label>
@@ -12,7 +12,7 @@
           matInput
           type="number"
           placeholder="Placeholder"
-          [formControl]="price"
+          formControlName="price"
         />
       </mat-form-field>
     </div>
@@ -23,12 +23,12 @@
           matInput
           type="number"
           placeholder="Placeholder"
-          [formControl]="rating"
+          formControlName="rating"
         />
       </mat-form-field>
       <mat-form-field appearance="outline" class="flex1 m-1">
         <mat-label>Select the Category</mat-label>
-        <mat-select [formControl]="category">
+        <mat-select formControlName="category">
           <mat-option>None</mat-option>
           <mat-option value="electronics">Electronics</mat-option>
           <mat-option value="decor">Decor</mat-option>
@@ -37,9 +37,27 @@
         </mat-select>
       </mat-form-field>
     </div>
+    <div class="display-flex">
+      <mat-form-field appearance="outline" class="flex1">
+        <mat-label>Image</mat-label>
+        <button mat-icon-button matPrefix (click)="f_input.click()">
+          <mat-icon>attach_file</mat-icon>
+        </button>
+        <input type="text" readonly matInput formControlName="display" />
+        <input
+          type="file"
+          multiple
+          hidden
+          #f_input
+          (change)="handleFileInputChange(f_input.files)"
+        />
+        <mat-error>this field is required</mat-error>
+      </mat-form-field>
+    </div>
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick(false)">Cancel</button>
-  <button mat-button (click)="update()" cdkFocusInitial>Update</button>
+  <button mat-button (click)="onNoClick(false)" mat-raised-button>Cancel</button>
+  <button *ngIf="this.data.button === 'update' " mat-raised-button (click)="update()" cdkFocusInitial>{{this.data.button}}</button>
+  <button *ngIf="this.data.button === 'Add Product' " mat-raised-button (click)="add()">{{this.data.button}}</button>
 </div>

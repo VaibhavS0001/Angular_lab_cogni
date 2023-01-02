@@ -15,30 +15,19 @@ import { category, Product } from '../../model/product.model';
 })
 export class ShoppingCartComponent implements OnChanges, OnInit {
   title: string = 'Shopping Cart';
-  productData: [
-    {
-      id: number;
-      name: string;
-      price: number;
-      category: category;
-      rating: number;
-      image: string;
-      quantity: number;
-    }
-  ] = [
-    {
-      id: 10,
-      name: 'watch2',
-      price: 12000,
-      category: category.electronics,
-      rating: 3.5,
-      image: '../assets/images/smartwatch.webp',
-      quantity: 1,
-    },
-  ];
+  productData: Array<{
+    id: number;
+    name: string;
+    price: number;
+    category: category;
+    rating: number;
+    image: string;
+    quantity: number;
+  }>;
   msg: string;
   cart: Product;
   total: number = 0;
+  c = 0
   // @Input() cartProduct: Product;
 
   @Input() cartProduct: Product;
@@ -58,7 +47,7 @@ export class ShoppingCartComponent implements OnChanges, OnInit {
       quantity: number;
     };
     let count = 0;
-    if (this.cartProduct != undefined) {
+    if (this.cartProduct != undefined && this.productData != undefined) {
       for (let i = 0; i < this.productData.length; i++) {
         if (this.productData[i].id == this.cartProduct.id) {
           this.snackBar.open(
@@ -84,16 +73,21 @@ export class ShoppingCartComponent implements OnChanges, OnInit {
         this.productData.push({ ...this.cartProduct, quantity: 1 });
       }
 
+      if(this.c == 1){
+        this.c = 0
+        this.productData.shift()
+      }
+
       this.productData.forEach((product) => {
         this.total += product.price;
       });
+    }else{
+        this.c = this.c + 1
+        this.productData = [{ ...this.cartProduct, quantity: 1 }];
     }
   }
   constructor(private snackBar: MatSnackBar) {}
   ngOnInit(): void {
-    this.productData.forEach((product) => {
-      this.total += product.price;
-    });
   }
 
   add(id: number) {
@@ -119,14 +113,14 @@ export class ShoppingCartComponent implements OnChanges, OnInit {
         product.quantity -= 1;
         ac *= product.quantity;
         product.price = ac;
-      }else if(product.id == id && product.quantity == 1){
-        this.productData.splice(i,1)
+      } else if (product.id == id && product.quantity == 1) {
+        this.productData.splice(i, 1);
       }
     });
 
-    this.productData.forEach(product =>{
+    this.productData.forEach((product) => {
       sum += product.price;
-    })
+    });
 
     this.total = sum;
   }
