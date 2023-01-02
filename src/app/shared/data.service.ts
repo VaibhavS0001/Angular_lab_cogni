@@ -171,6 +171,20 @@ export class DataService implements InMemoryDbService {
           image: '../assets/images/phone.jpg',
         },
       ],
+      users: [
+        {
+          name: 'Vaibhav',
+          email: 'vaib@gmail.com',
+          password: 'pass@1',
+          role: 'user',
+        },
+        {
+          name: 'Vaibhav Sharma',
+          email: 'vaibhav@gmail.com',
+          password: 'password',
+          role: 'admin',
+        },
+      ],
     };
   }
 }

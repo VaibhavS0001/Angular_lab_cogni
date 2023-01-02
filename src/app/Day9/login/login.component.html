@@ -1,0 +1,36 @@
+<div class="bg">
+  <div class="adjust">
+    <form class="shadow-lg" [formGroup]="loginForm">
+      <span id="title">Sign in</span>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="email"
+        formControlName="email"
+      />
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <div id="button">
+        <input
+          type="submit"
+          value="Login"
+          (click)="login()"
+          [disabled]="!loginForm.valid"
+        />
+        <span class="rip1"></span>
+        <span class="rip2"></span>
+        <!-- <span class="rip3"></span> -->
+      </div>
+      <div id="linksParent">
+        <a>Sign up</a>
+        <a>Forgot your password?</a>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,11 +1,14 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogComponent } from 'src/app/dialog/dialog.component';
-import { category, Product } from 'src/app/model/product.model';
+import { Product } from 'src/app/model/product.model';
 import { LoggingService } from 'src/app/shared/logging.service';
 import { ProductService } from 'src/app/shared/product.service';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/auth-service.service';
+
 
 @Component({
   selector: 'app-productlist',
@@ -15,7 +18,7 @@ import { ProductService } from 'src/app/shared/product.service';
 export class ProductlistComponent implements OnInit {
   @Output() productClicked: EventEmitter<Product> = new EventEmitter();
   sCategory: any;
-  selected = 'user';
+  // selected = 'user';
   title: string = 'Product List';
   msg: string;
   productData: Product[] = [];
@@ -25,15 +28,31 @@ export class ProductlistComponent implements OnInit {
   c: number = 0;
   res: any;
   error: boolean;
+  isAuthenticated: boolean = false;
+  role: string
+  links: Array<string> = []
+  sub!: Subscription;
 
+  
   constructor(
     private pService: ProductService,
     private logger: LoggingService,
     private snackBar: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authService: AuthService,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
+    this.role = this.authService.checkRole()
+    console.log(this.role)
+    this.isAuthenticated = this.authService.checkAuthStatus()
+
+    if(!this.isAuthenticated){
+      this.links.push('login')
+    }else{
+      this.links.push('Logout')
+    }
     this.pService.getProducts().subscribe((data) => {
       data.forEach((product) => {
         this.productData.push(product);
@@ -161,7 +180,10 @@ export class ProductlistComponent implements OnInit {
     this.msg = msg;
   }
 
-  addToShopping(product: Product): void {
+  addToShopping(product: any): void {
     this.productClicked.emit(product);
+    this.route.navigate(['cart'], {queryParams: product })
+
   }
+
 }

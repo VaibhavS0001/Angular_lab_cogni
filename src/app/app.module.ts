@@ -45,6 +45,7 @@ import { StudentsComponent } from './Day8/students/students.component';
 import { PageNotFoundComponent } from './Day8/page-not-found/page-not-found.component';
 import { StudentListComponent } from './Day8/student-list/student-list.component';
 import { StudentDetailsComponent } from './Day8/student-details/student-details.component';
+import { LoginComponent } from './Day9/login/login.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { StudentDetailsComponent } from './Day8/student-details/student-details.
     PageNotFoundComponent,
     StudentListComponent,
     StudentDetailsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

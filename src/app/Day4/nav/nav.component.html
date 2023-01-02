@@ -8,8 +8,9 @@
       </button>
       
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <button type="button" class="m-1 btn btn-outline-light nav-link" routerLink={{link}} *ngFor="let link of links">{{link}}</button>
+        <div class="navbar-nav" *ngFor="let link of links">
+            <button type="button" *ngIf="link != 'Logout'" class="m-1 btn btn-outline-light nav-link" [routerLink]="['/'+link]">{{link}}</button>
+            <button type="button" *ngIf="link == 'Logout'" class="m-1 btn btn-outline-light nav-link" (click) = "logout()">{{link}}</button>
         </div>
       </div>
     </div>
