@@ -1,12 +1,12 @@
-<h1 mat-dialog-title *ngIf="this.data.button === 'Add Product'">Add Product</h1>
-<h1 mat-dialog-title *ngIf="this.data.button !== 'Add Product'">
-  Update Product
+<h1 mat-dialog-title *ngIf="this.data.button === 'Add Animal'">Add Animal</h1>
+<h1 mat-dialog-title *ngIf="this.data.button !== 'Add Animal'">
+  Update Animal
 </h1>
 <div mat-dialog-content>
   <form
     class="example-form"
     [formGroup]="
-      this.data.button === 'Add Product' ? addProduct : updateProduct
+      this.data.button === 'Add Animal' ? addAnimal : updateAnimal
     "
   >
     <div class="display-flex">
@@ -20,37 +20,25 @@
         />
       </mat-form-field>
       <mat-form-field appearance="outline" class="flex1 m-1">
-        <mat-label>Price</mat-label>
+        <mat-label>Description</mat-label>
         <input
           matInput
-          type="number"
+          type="text"
           placeholder="Placeholder"
-          formControlName="price"
+          formControlName="description"
         />
       </mat-form-field>
     </div>
     <div class="display-flex">
       <mat-form-field appearance="outline" class="flex1 m-1">
-        <mat-label>Rating</mat-label>
+        <mat-label>Age</mat-label>
         <input
           matInput
           type="number"
           placeholder="Placeholder"
-          formControlName="rating"
+          formControlName="age"
         />
       </mat-form-field>
-      <mat-form-field appearance="outline" class="flex1 m-1">
-        <mat-label>Select the Category</mat-label>
-        <mat-select formControlName="category">
-          <mat-option>None</mat-option>
-          <mat-option value="electronics">Electronics</mat-option>
-          <mat-option value="decor">Decor</mat-option>
-          <mat-option value="grocery">Grocery</mat-option>
-          <mat-option value="clothing">Clothing</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="display-flex">
       <mat-form-field appearance="outline" class="flex1">
         <mat-label>Image</mat-label>
         <button mat-icon-button matPrefix (click)="f_input.click()">
@@ -82,7 +70,7 @@
     {{ this.data.button }}
   </button>
   <button
-    *ngIf="this.data.button === 'Add Product'"
+    *ngIf="this.data.button === 'Add Animal'"
     mat-raised-button
     (click)="add()"
   >

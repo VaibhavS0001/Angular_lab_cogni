@@ -11,10 +11,6 @@ export class ProductService {
 
   products: Product[] = [];
 
-  private selectedProductSource = new BehaviorSubject<Product | null>(null);
-
-  selectedProductChanges$ = this.selectedProductSource.asObservable();
-
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>('api/products/');
   }

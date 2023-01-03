@@ -49,8 +49,10 @@ export class ProductlistComponent implements OnInit {
     this.isAuthenticated = this.authService.checkAuthStatus()
 
     if(!this.isAuthenticated){
+      this.links.push('animal')
       this.links.push('login')
     }else{
+      this.links.push('animal')
       this.links.push('Logout')
     }
     this.pService.getProducts().subscribe((data) => {

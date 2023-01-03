@@ -1,3 +1,4 @@
+<app-nav [title]="title" [links]="links"></app-nav>
 <div class="container h100">
   <div class="m-auto pt-5">
     <h1 class="text-center">Animal List</h1>
@@ -5,6 +6,15 @@
       <mat-label>Filter By Name</mat-label>
       <input [(ngModel)]="Sname" (keyup)="filter()" matInput />
     </mat-form-field>
+    <button
+      class="m-1"
+      mat-raised-button
+      color="primary"
+      *ngIf="role == 'admin'"
+      (click)="addAnimal()"
+    >
+      {{ button }}
+    </button>
     <table *ngIf="ELEMENT_DATA.length" class="table table-danger">
       <thead>
         <tr>
@@ -16,6 +26,9 @@
             <button mat-raised-button color="primary" (click)="show()">
               {{ text }}
             </button>
+          </th>
+          <th colspan="2" class="text-center" *ngIf="role == 'admin'">
+            Actions
           </th>
         </tr>
       </thead>
@@ -33,6 +46,16 @@
               [height]="img_height"
               [width]="img_width"
             />
+          </td>
+          <td *ngIf="role == 'admin'">
+            <mat-icon (click)="updateAnimal(i)"
+              >edit</mat-icon
+            >
+          </td>
+          <td *ngIf="role == 'admin'">
+            <mat-icon (click)="deleteAnimal(i.id)"
+              >delete</mat-icon
+            >
           </td>
         </tr>
       </tbody>

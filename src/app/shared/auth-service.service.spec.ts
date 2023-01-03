@@ -1,13 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
-import { AuthServiceService } from './auth-service.service';
+import { AuthService } from './auth-service.service';
 
 describe('AuthServiceService', () => {
-  let service: AuthServiceService;
+  let service: AuthService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthServiceService);
+    const spy = jasmine.createSpyObj('HttpClient', ['getUsers']);
+    TestBed.configureTestingModule({
+      providers: [AuthService, { provide: HttpClient, useValue: spy }],
+    });
+    service = TestBed.inject(AuthService);
   });
 
   it('should be created', () => {

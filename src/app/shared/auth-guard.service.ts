@@ -13,7 +13,6 @@ export class AuthGuardService {
     return this.checkLoggedin(state.url)
   }
   checkLoggedin(url: string) {
-    console.log(url)
     if(this.authService.checkAuthStatus()){
       return true
     }

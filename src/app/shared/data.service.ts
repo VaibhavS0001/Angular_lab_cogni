@@ -185,6 +185,36 @@ export class DataService implements InMemoryDbService {
           role: 'admin',
         },
       ],
+      animals: [
+        {
+          id: 1,
+          name: 'cat',
+          description: 'this is  cat',
+          age: 20,
+          image: '../assets/images/cat.webp',
+        },
+        {
+          id: 2,
+          name: 'dog',
+          description: 'this is a dog',
+          age: 9,
+          image: '../assets/images/dog.jpg',
+        },
+        {
+          id: 3,
+          name: 'lion',
+          description: 'this is  cat',
+          age: 10,
+          image: '../assets/images/cat.webp',
+        },
+        {
+          id: 4,
+          name: 'tiger',
+          description: 'this is a dog',
+          age: 5,
+          image: '../assets/images/dog.jpg',
+        },
+      ],
     };
   }
 }

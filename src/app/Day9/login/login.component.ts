@@ -36,7 +36,9 @@ export class LoginComponent implements OnInit {
           user.email === this.loginForm.get('email').value &&
           user.password === this.loginForm.get('password').value
         ) {
-          if (this.auth.redirectToUrl && this.auth.checkAuthStatus()) {
+          if (this.auth.redirectToUrl) {
+            this.auth.changeAuthStatus();
+            this.auth.changeRole(user.role);
             this.route.navigateByUrl(this.auth.redirectToUrl);
           } else {
             this.auth.changeAuthStatus();
