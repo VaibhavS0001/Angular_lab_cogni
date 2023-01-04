@@ -47,6 +47,7 @@ import { StudentListComponent } from './Day8/student-list/student-list.component
 import { StudentDetailsComponent } from './Day8/student-details/student-details.component';
 import { LoginComponent } from './Day9/login/login.component';
 import { DialogAnimalComponent } from './Day10/dialog-animal/dialog-animal.component';
+import { GreetingComponent } from './Day10/greeting/greeting.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { DialogAnimalComponent } from './Day10/dialog-animal/dialog-animal.compo
     StudentDetailsComponent,
     LoginComponent,
     DialogAnimalComponent,
+    GreetingComponent,
   ],
   imports: [
     BrowserModule,

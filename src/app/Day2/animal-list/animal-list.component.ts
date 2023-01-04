@@ -41,7 +41,6 @@ export class AnimalListComponent implements OnInit {
 
   ) {
     this.role = this.auth.checkRole();
-    console.log(this.role);
     this.isAuthenticated = this.auth.checkAuthStatus();
 
     if (!this.isAuthenticated) {

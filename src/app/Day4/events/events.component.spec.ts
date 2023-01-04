@@ -3,6 +3,8 @@ import { EventService } from 'src/app/shared/event.service';
 import { NavComponent } from '../nav/nav.component';
 import { EventsComponent } from './events.component';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/shared/auth-service.service';
+import { RouterTestingModule } from '@angular/router/testing';
 describe('EventsComponent', () => {
   let component: EventsComponent;
   let fixture: ComponentFixture<EventsComponent>;
@@ -101,8 +103,9 @@ describe('EventsComponent', () => {
       })
     );
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [EventsComponent, NavComponent],
-      providers: [{ provide: EventService, useValue: spy }],
+      providers: [{ provide: EventService, useValue: spy }, { provide: AuthService, useValue: spy }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EventsComponent);

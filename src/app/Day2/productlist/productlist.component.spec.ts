@@ -14,6 +14,9 @@ import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { category } from 'src/app/model/product.model';
+import { NavComponent } from 'src/app/Day4/nav/nav.component';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ProductlistComponent', () => {
   let component: ProductlistComponent;
@@ -40,9 +43,18 @@ describe('ProductlistComponent', () => {
         MatDialogModule,
         MatSnackBarModule,
         MatIconModule,
+        RouterTestingModule,
       ],
-      declarations: [ProductlistComponent, StarComponent],
-      providers: [{ provide: ProductService, useValue: spy }],
+      declarations: [ProductlistComponent, StarComponent, NavComponent],
+      providers: [
+        { provide: ProductService, useValue: spy },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { params: { id: '24fkzrw3487943uf358lovd' } },
+          },
+        },
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
     }).compileComponents();
 
@@ -74,8 +86,8 @@ describe('ProductlistComponent', () => {
       category: category.clothing,
       rating: 4,
       image: '../assets/images/clothes.jpg',
-    })
-    await fixture.whenStable()
+    });
+    await fixture.whenStable();
     td.click();
     fixture.detectChanges();
     expect(component.productClicked.emit).toHaveBeenCalledWith({

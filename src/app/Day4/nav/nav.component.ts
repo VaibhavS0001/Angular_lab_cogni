@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/auth-service.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,9 +11,11 @@ export class NavComponent {
 @Input() title: string
 @Input() links: string[]
 
-constructor(private route: Router){}
+constructor(private route: Router, private auth: AuthService){}
 
 logout(){
+  this.auth.changeAuthStatus()
+  this.auth.role = null
   this.route.navigate([''], { replaceUrl: true });
 }
 

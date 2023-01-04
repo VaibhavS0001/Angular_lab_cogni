@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { StudentDetailsComponent } from './student-details.component';
 
@@ -8,9 +10,23 @@ describe('StudentDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StudentDetailsComponent ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule],
+      declarations: [StudentDetailsComponent],
+      providers: [
+        {
+          provide: ActivatedRouteSnapshot,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get(): string {
+                  return '123';
+                },
+              },
+            },
+          },
+        },
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(StudentDetailsComponent);
     component = fixture.componentInstance;

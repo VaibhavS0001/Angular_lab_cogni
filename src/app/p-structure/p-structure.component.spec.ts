@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTab, MatTabGroup, MatTabHeader } from '@angular/material/tabs';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { PentHouseComponent } from '../Day1/pent-house/pent-house.component';
 import { WelcomeComponent } from '../Day1/welcome/welcome.component';
 import { AnimalListComponent } from '../Day2/animal-list/animal-list.component';
@@ -24,7 +26,7 @@ describe('PStructureComponent', () => {
     const spy = jasmine.createSpyObj(['getProducts']);
 
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule],
       declarations: [
         PStructureComponent,
         MatTab,
@@ -37,10 +39,25 @@ describe('PStructureComponent', () => {
         PentHouseComponent,
         MatTabHeader,
         NavComponent,
-        RepeatDataPipe
+        RepeatDataPipe,
       ],
-      providers: [ MatSnackBar, {provide: MatDialog, useValue: spy} ],
-      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
+      providers: [
+        MatSnackBar,
+        { provide: MatDialog, useValue: spy },
+        {
+          provide: ActivatedRouteSnapshot,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get(): string {
+                  return '123';
+                },
+              },
+            },
+          },
+        },
+      ],
+      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PStructureComponent);

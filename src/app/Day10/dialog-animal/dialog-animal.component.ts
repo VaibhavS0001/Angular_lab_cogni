@@ -21,11 +21,8 @@ export class DialogAnimalComponent {
   ) {}
 
   ngOnInit(): void {
-    if (this.data.animal) {
-      this.initUpdateForm();
-    } else {
-      this.initAddForm();
-    }
+    this.initUpdateForm();
+    this.initAddForm();
   }
 
   initAddForm() {
@@ -40,7 +37,7 @@ export class DialogAnimalComponent {
   initUpdateForm() {
     this.updateAnimal = this.fb.group({
       name: [this.data.animal?.name, Validators.required],
-      age: [this.data.animal.age, Validators.required],
+      age: [this.data.animal?.age, Validators.required],
       description: [this.data.animal?.description, Validators.required],
       display: [this.data.animal?.image, Validators.required],
     });

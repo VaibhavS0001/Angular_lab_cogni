@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { DialogComponent } from './dialog.component';
@@ -14,8 +14,8 @@ describe('DialogComponent', () => {
     const spy1 = jasmine.createSpyObj('name', ['']);
 
     await TestBed.configureTestingModule({
-      declarations: [ DialogComponent ],
-      providers: [{ provide: MatDialogRef, useValue: {spy} }, {provide: MAT_DIALOG_DATA, useValue: 'spy1'}],
+      declarations: [ DialogComponent],
+      providers: [{ provide: MatDialogRef, useValue: {spy} }, {provide: MAT_DIALOG_DATA, useValue: 'spy1'}, FormBuilder],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
     })
     .compileComponents();
