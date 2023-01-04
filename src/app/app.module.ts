@@ -48,6 +48,8 @@ import { StudentDetailsComponent } from './Day8/student-details/student-details.
 import { LoginComponent } from './Day9/login/login.component';
 import { DialogAnimalComponent } from './Day10/dialog-animal/dialog-animal.component';
 import { GreetingComponent } from './Day10/greeting/greeting.component';
+import { CardComponent } from './Day11/content-projection/card.component';
+import { CardListComponent } from './Day11/content-projection/card-list.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { GreetingComponent } from './Day10/greeting/greeting.component';
     ShoppingCartComponent,
     RepeatDataPipe,
     NavComponent,
+    CardComponent,
+    CardListComponent,
     EventsComponent,
     EventDetailsComponent,
     DialogComponent,

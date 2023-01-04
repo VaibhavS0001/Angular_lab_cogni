@@ -7,7 +7,7 @@ import { Events } from 'src/app/model/event.model';
   styleUrls: ['./event-details.component.scss'],
 })
 export class EventDetailsComponent implements OnInit {
-  @Input() eventDets: Events;
+  @Input() eventDets!: Events;
   eventDetstring: any
   constructor() {}
   ngOnInit(): void {

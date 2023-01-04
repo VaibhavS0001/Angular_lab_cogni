@@ -15,7 +15,7 @@ import {
   styleUrls: ['./star.component.scss'],
 })
 export class StarComponent implements OnInit, AfterViewInit {
-  @ViewChild('div') div: ElementRef;
+  @ViewChild('div') div!: ElementRef;
   @Input() rating: number = 0;
   @Output() ratingClicked: EventEmitter<string> = new EventEmitter();
 
@@ -36,7 +36,7 @@ export class StarComponent implements OnInit, AfterViewInit {
         this.renderer.addClass(icon, 'material-icons');
         this.renderer.appendChild(this.div.nativeElement, icon);
       }
-      if (this.rating.toString().includes('.5')) {
+      if (this.rating?.toString().includes('.5')) {
         let icon = this.renderer.createElement('mat-icon');
         this.renderer.appendChild(icon, this.renderer.createText('star_half'));
         this.renderer.addClass(icon, 'mat-icon');

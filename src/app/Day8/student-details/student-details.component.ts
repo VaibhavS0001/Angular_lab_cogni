@@ -9,7 +9,7 @@ import { Student, StudentService } from 'src/app/shared/student.service';
   styleUrls: ['./student-details.component.scss'],
 })
 export class StudentDetailsComponent implements OnInit {
-  email: string;
+  email!: string;
   student: any;
   sub!: Subscription;
   displayedColumns: string[] = ['program_name', 'duration'];

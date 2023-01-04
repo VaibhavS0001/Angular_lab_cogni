@@ -11,7 +11,7 @@ import { category, Product } from '../model/product.model';
 export class DialogComponent implements OnInit {
   addProduct: any;
   updateProduct: any;
-  file_store: FileList;
+  file_store!: FileList;
   file_list: Array<string> = [];
 
   constructor(
@@ -105,7 +105,7 @@ export class DialogComponent implements OnInit {
     this.dialogRef.close(res);
   }
 
-  handleFileInputChange(l: FileList): void {
+  handleFileInputChange(l: any): void {
     if(this.data.button === 'Add Product' ){
       this.file_store = l;
       if (l.length) {

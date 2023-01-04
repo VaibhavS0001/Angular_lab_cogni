@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/shared/auth-service.service';
 })
 export class LoginComponent implements OnInit {
   // @Output() role: EventEmitter<string> = new EventEmitter();
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
   isAuthenticated: boolean = false;
   constructor(
     private fb: FormBuilder,
@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
     this.auth.getUsers().subscribe((users) => {
       for (let user of users) {
         if (
-          user.email === this.loginForm.get('email').value &&
-          user.password === this.loginForm.get('password').value
+          user.email === this.loginForm.get('email')?.value &&
+          user.password === this.loginForm.get('password')?.value
         ) {
           if (this.auth.redirectToUrl) {
             this.auth.changeAuthStatus();
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
           break;
         } else {
           this.isAuthenticated = false;
-          console.log('Incorrect email or password');
+          // console.log('Incorrect email or password');
         }
       }
     });

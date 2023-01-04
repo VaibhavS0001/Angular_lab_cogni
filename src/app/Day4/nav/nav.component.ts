@@ -8,14 +8,14 @@ import { AuthService } from 'src/app/shared/auth-service.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent {
-@Input() title: string
-@Input() links: string[]
+@Input() title!: string
+@Input() links!: string[]
 
 constructor(private route: Router, private auth: AuthService){}
 
 logout(){
   this.auth.changeAuthStatus()
-  this.auth.role = null
+  this.auth.role = ''
   this.route.navigate([''], { replaceUrl: true });
 }
 

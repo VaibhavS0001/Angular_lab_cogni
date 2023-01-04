@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
   isAuthenticated:boolean = false
-  role: string
+  role!: string
   redirectToUrl!:string;
   private url = "api/users/"
 

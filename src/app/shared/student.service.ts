@@ -6,9 +6,9 @@ export interface Program {
 }
 
 export class Student {
-  name: string;
-  email: string;
-  program: Program[];
+  name!: string;
+  email!: string;
+  program!: Program[];
 }
 
 @Injectable({
@@ -16,7 +16,7 @@ export class Student {
 })
 export class StudentService {
   student: any[] = [];
-  data: Student
+  data!: Student
   constructor() {}
 
   getStudents() {
@@ -25,7 +25,7 @@ export class StudentService {
 
   getStudentsWithEmail(email: string) {
     if(this.student[0]){
-      this.student[0].students.forEach(student => {
+      this.student[0].students.forEach((student: Student) => {
         if(student.email == email){
           this.data = student;
         }

@@ -9,7 +9,7 @@ import { Trustee } from 'src/app/model/trustee.model';
 })
 export class TrusteeComponent implements OnInit {
   @ViewChild('trusteeForm', {}) tForm!: NgForm;
-  trustee: Trustee;
+  trustee!: Trustee;
   constructor() {}
   ngOnInit(): void {
     this.trustee = {

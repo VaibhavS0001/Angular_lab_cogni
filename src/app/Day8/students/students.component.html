@@ -19,18 +19,18 @@
                   <mat-form-field appearance="outline" class="m-1 flex1">
                     <mat-label>Name</mat-label>
                     <input matInput placeholder="Enter your first name" formControlName="name" />
-                    <mat-error *ngIf="students().at(studIndex).get('name').errors?.['required']">Name is
+                    <mat-error *ngIf="students().at(studIndex).get('name')?.errors?.['required']">Name is
                       Required</mat-error>
-                    <mat-error *ngIf="students().at(studIndex).get('name').errors?.['pattern']">First letter must be
+                    <mat-error *ngIf="students().at(studIndex).get('name')?.errors?.['pattern']">First letter must be
                       Capitalized</mat-error>
                   </mat-form-field>
 
                   <mat-form-field appearance="outline" class="m-1 flex1">
                     <mat-label>Email</mat-label>
                     <input matInput type="email" placeholder="Enter your email" formControlName="email" />
-                    <mat-error *ngIf="students().at(studIndex).get('email').errors?.['required']">Email is
+                    <mat-error *ngIf="students().at(studIndex).get('email')?.errors?.['required']">Email is
                       Required</mat-error>
-                    <mat-error *ngIf="students().at(studIndex).get('email').errors?.['email']">Format for email should
+                    <mat-error *ngIf="students().at(studIndex).get('email')?.errors?.['email']">Format for email should
                       be avc@xyz.com</mat-error>
                   </mat-form-field>
                 </div>

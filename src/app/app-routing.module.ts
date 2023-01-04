@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { CardListComponent } from './Day11/content-projection/card-list.component';
 import { AnimalListComponent } from './Day2/animal-list/animal-list.component';
 import { ProductlistComponent } from './Day2/productlist/productlist.component';
 import { ShoppingCartComponent } from './Day3/shopping-cart/shopping-cart.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'wholeApp', component: PStructureComponent },
   { path: 'student', component: StudentsComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'card-list', component: CardListComponent },
   { path: 'animal', component: AnimalListComponent, canActivate: [AuthGuardService] },
   {
     path: 'student-list',

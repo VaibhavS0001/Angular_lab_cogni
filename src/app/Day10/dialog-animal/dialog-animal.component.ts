@@ -11,7 +11,7 @@ import { Animal } from 'src/app/Day2/animal-list/animal-list.component';
 export class DialogAnimalComponent {
   addAnimal: any;
   updateAnimal: any;
-  file_store: FileList;
+  file_store!: FileList;
   file_list: Array<string> = [];
 
   constructor(
@@ -84,7 +84,7 @@ export class DialogAnimalComponent {
     this.dialogRef.close(res);
   }
 
-  handleFileInputChange(l: FileList): void {
+  handleFileInputChange(l: any): void {
     if (this.data.button === 'Add Animal') {
       this.file_store = l;
       if (l.length) {

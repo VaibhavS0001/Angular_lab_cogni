@@ -20,16 +20,16 @@ export class ProductlistComponent implements OnInit {
   sCategory: any;
   // selected = 'user';
   title: string = 'Product List';
-  msg: string;
+  msg!: string;
   productData: Product[] = [];
   temp2 = this.productData;
   switch: boolean = false;
   button: string = 'Add Product';
   c: number = 0;
   res: any;
-  error: boolean;
+  error!: boolean;
   isAuthenticated: boolean = false;
-  role: string
+  role!: string
   links: Array<string> = []
   sub!: Subscription;
 
@@ -45,7 +45,7 @@ export class ProductlistComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = this.authService.checkRole()
-    console.log(this.role)
+    // console.log(this.role)
     this.isAuthenticated = this.authService.checkAuthStatus()
 
     if(!this.isAuthenticated){
@@ -90,6 +90,7 @@ export class ProductlistComponent implements OnInit {
         }
         if (this.c == this.productData.length) {
           this.pService.createProduct(result).subscribe((data) => {
+            console.log(data)
             this.productData.push(data);
             this.snackBar.open(
               'New Product is created successfully with id ' + data.id,
@@ -159,7 +160,7 @@ export class ProductlistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed', result);
+      // console.log('The dialog was closed', result);
       if (result) {
         this.pService.updateProduct(result).subscribe(() => {
           let fIndex = this.productData.findIndex(

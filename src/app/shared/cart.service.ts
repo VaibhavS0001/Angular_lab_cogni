@@ -5,7 +5,7 @@ import { category } from '../model/product.model';
   providedIn: 'root'
 })
 export class CartService {
-  productData: [{
+  productData!: [{
     id: number;
     name: string;
     price: number;
@@ -20,8 +20,8 @@ export class CartService {
     return this.productData
   }
 
-  setProduct(product){
-    console.log(product);
+  setProduct(product: any){
+    // console.log(product);
     this.productData = product;
   }
 

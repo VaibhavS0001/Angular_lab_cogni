@@ -8,9 +8,9 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 export class WelcomeComponent {
   pipe: string = 'Vaibhav'
   num: number = 6
-  checked: boolean
+  checked!: boolean
   
-  onclick(e){
+  onclick(e: any){
     this.checked = e.target.checked
   }
 }

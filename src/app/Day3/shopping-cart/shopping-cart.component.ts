@@ -17,22 +17,22 @@ import { category, Product } from '../../model/product.model';
 })
 export class ShoppingCartComponent implements OnChanges, OnInit {
   title: string = 'Shopping Cart';
-  productData: Array<{
+  productData!: Array<{
     id: number;
     name: string;
-    price: number;
+    price: any;
     category: category;
-    rating: number;
+    rating: any;
     image: string;
     quantity: number;
   }>;
-  msg: string;
-  cart: Product;
-  total: number = 0;x
+  msg!: string;
+  cart!: Product;
+  total: number = 0;
   c = 0
   cP: any = {};
 
-  @Input() cartProduct: Product;
+  @Input() cartProduct!: Product;
 
   OnclickRating(msg: string): void {
     this.msg = msg;
@@ -91,7 +91,7 @@ export class ShoppingCartComponent implements OnChanges, OnInit {
   constructor(private snackBar: MatSnackBar, private aRoute: ActivatedRoute, private cService: CartService) {}
   ngOnInit(): void {
     this.productData = this.cService.getProduct()
-    console.log(this.productData)
+    // console.log(this.productData)
     this.aRoute.queryParamMap.subscribe((params) => {
       let cat: category;
       if (params.get('category') == 'clothing') {
@@ -105,11 +105,11 @@ export class ShoppingCartComponent implements OnChanges, OnInit {
       }
       this.cP.id = params.get('id');
       this.cP.name = params.get('name');
-      this.cP.price = parseInt(params.get('price'));
+      this.cP.price = params.get('price');
       this.cP.category = cat;
-      this.cP.rating = parseFloat(params.get('rating'));
+      this.cP.rating = params.get('rating');
       this.cP.image = params.get('image');
-      console.log(this.cP)
+      // console.log(this.cP)
       let obj: {
         id: number;
         name: string;

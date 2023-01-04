@@ -27,7 +27,7 @@ export class AnimalListComponent implements OnInit {
   role: string;
   ELEMENT_DATA: Animal[] = [];
   links: Array<string> = [];
-  temp2: Animal[];
+  temp2!: Animal[];
   isAuthenticated: boolean = false;
   title: string = 'Animal List';
   button: string = 'Add Animal';
@@ -143,7 +143,7 @@ export class AnimalListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed', result);
+      // console.log('The dialog was closed', result);
       if (result) {
         this.aService.updateAnimal(result).subscribe(() => {
           let fIndex = this.ELEMENT_DATA.findIndex(

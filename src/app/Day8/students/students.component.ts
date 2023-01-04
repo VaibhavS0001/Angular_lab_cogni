@@ -77,7 +77,7 @@ export class StudentsComponent implements OnInit {
   }
 
   Register(): void {
-    console.log(this.studForm.value);
+    // console.log(this.studForm.value);
     this.studService.setStudent(this.studForm.value)
     this.router.navigate(['student-list'])
     this.studForm.reset();
