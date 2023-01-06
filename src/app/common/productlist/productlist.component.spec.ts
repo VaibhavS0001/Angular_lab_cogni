@@ -8,8 +8,8 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { ProductService } from 'src/app/shared/product.service';
-import { StarComponent } from 'src/app/Day3/star/star.component';
+import { ProductService } from 'src/app/services/product.service';
+import { StarComponent } from 'src/app/common/star/star.component';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';

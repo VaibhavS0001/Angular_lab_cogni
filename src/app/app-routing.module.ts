@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CardListComponent } from './Day11/card-list/card-list.component';
 import { AnimalListComponent } from './Day2/animal-list/animal-list.component';
-import { ProductlistComponent } from './Day2/productlist/productlist.component';
+import { ProductlistComponent } from './common/productlist/productlist.component';
 import { ShoppingCartComponent } from './Day3/shopping-cart/shopping-cart.component';
 import { EventsComponent } from './Day4/events/events.component';
 import { PageNotFoundComponent } from './Day8/page-not-found/page-not-found.component';
@@ -12,12 +12,12 @@ import { StudentListComponent } from './Day8/student-list/student-list.component
 import { StudentsComponent } from './Day8/students/students.component';
 import { LoginComponent } from './Day9/login/login.component';
 import { PStructureComponent } from './p-structure/p-structure.component';
-import { AuthGuardService } from './shared/auth-guard.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'app', component: AppComponent },
-  { path: 'products', component: ProductlistComponent, canActivate: [AuthGuardService] },
+  { path: 'products', loadChildren:() => import('./Day2/products/products.module').then(m => m.ProductsModule) },
   { path: 'cart', component: ShoppingCartComponent },
   { path: 'events', component: EventsComponent },
   { path: 'wholeApp', component: PStructureComponent },

@@ -1,12 +1,11 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState } from '../app.state';
-import { TodoState } from './todo.reducers';
+import { TodoState, todoState } from './todo.state';
 
-export const selectTodos = (state: AppState) => state.todos
+export const selectTodos = (state: todoState) => state.todos
 
-export const selectAllTodos = createSelector(
+export const featuredS = createSelector(
   selectTodos,
   (state: TodoState) => state.todos
 );
 
-export const featuredS = createFeatureSelector('todos')
+export const selectAllTodos: any = createFeatureSelector('todos')

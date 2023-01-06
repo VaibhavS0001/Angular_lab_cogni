@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { CartService } from 'src/app/shared/cart.service';
+import { CartService } from 'src/app/services/cart.service';
 import { category, Product } from '../../model/product.model';
 
 @Component({

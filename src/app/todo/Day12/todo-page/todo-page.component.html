@@ -23,10 +23,19 @@
     </form>
     <mat-divider></mat-divider>
     <br />
-    <ul>
-      <div *ngFor="let todo of todoList.todos">
-        <li>{{ todo.content }}</li>
-      </div>
-    </ul>
+    <table class="table w-100 shadow-lg">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Contents</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let todo of todoList.todos">
+        <tr (click)="remove(todo.id)">
+          <td>{{ todo.id }}</td>
+          <td>{{ todo.content }}</td>
+        </tr>
+      </tbody>
+    </table>
   </mat-card-content>
 </mat-card>

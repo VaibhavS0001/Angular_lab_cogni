@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogAnimalComponent } from 'src/app/Day10/dialog-animal/dialog-animal.component';
-import { AnimalService } from 'src/app/shared/animal.service';
-import { AuthService } from 'src/app/shared/auth-service.service';
+import { AnimalService } from 'src/app/services/animal.service';
+import { AuthService } from 'src/app/services/auth-service.service';
 
 export interface Animal {
   id: number;

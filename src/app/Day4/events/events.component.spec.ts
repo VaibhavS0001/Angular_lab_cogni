@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { EventService } from 'src/app/shared/event.service';
+import { EventService } from 'src/app/services/event.service';
 import { NavComponent } from '../../common/nav/nav.component';
 import { EventsComponent } from './events.component';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/shared/auth-service.service';
+import { AuthService } from 'src/app/services/auth-service.service';
 import { RouterTestingModule } from '@angular/router/testing';
 describe('EventsComponent', () => {
   let component: EventsComponent;

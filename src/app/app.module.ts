@@ -13,8 +13,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ProductlistComponent } from './Day2/productlist/productlist.component';
-import { StarComponent } from './Day3/star/star.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ShoppingCartComponent } from './Day3/shopping-cart/shopping-cart.component';
@@ -28,7 +26,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { DataService } from './shared/data.service';
+import { DataService } from './services/data.service';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PStructureComponent } from './p-structure/p-structure.component';
@@ -52,10 +50,10 @@ import { CardListComponent } from './Day11/card-list/card-list.component';
 import { SharedModule } from './common/common.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { AppEffects } from './to.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { TodoEffects } from './state/todos/todo.effects';
 import { todoReducer } from './state/todos/todo.reducers';
+import { productReducer } from './state/products/products.reducers';
 
 @NgModule({
   declarations: [
@@ -63,8 +61,6 @@ import { todoReducer } from './state/todos/todo.reducers';
     PentHouseComponent,
     WelcomeComponent,
     AnimalListComponent,
-    ProductlistComponent,
-    StarComponent,
     ShoppingCartComponent,
     RepeatDataPipe,
     CardComponent,
@@ -109,7 +105,8 @@ import { todoReducer } from './state/todos/todo.reducers';
     MatDialogModule,
     ReactiveFormsModule,
     StoreModule.forRoot({}),
-    StoreModule.forFeature('todo', todoReducer),
+    StoreModule.forFeature('todos', todoReducer),
+    StoreModule.forFeature('products', productReducer),
     EffectsModule.forRoot([TodoEffects]),
     StoreDevtoolsModule.instrument(),
     HttpClientInMemoryWebApiModule.forRoot(DataService),

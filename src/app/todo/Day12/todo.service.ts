@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
+import { TodoState } from 'src/app/state/todos/todo.state';
 import { Todo } from './todo-page/todo.model';
 
 @Injectable({
@@ -28,6 +29,17 @@ export class TodoService {
       tap((data) => {
         console.log('====================================');
         console.log(data);
+        console.log('====================================');
+      }),
+      catchError(this.errorHandler)
+    );
+  }
+
+  deleteTodo(todoId: any): Observable<{}> {
+    return this.http.delete<Todo>(`api/products/${todoId.id}`).pipe(
+      tap((data) => {
+        console.log('====================================');
+        console.log(`Task with id: ${todoId.id} deleted successfully`);
         console.log('====================================');
       }),
       catchError(this.errorHandler)

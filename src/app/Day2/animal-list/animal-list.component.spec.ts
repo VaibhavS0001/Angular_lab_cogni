@@ -9,8 +9,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs';
-import { AnimalService } from 'src/app/shared/animal.service';
-import { AuthService } from 'src/app/shared/auth-service.service';
+import { AnimalService } from 'src/app/services/animal.service';
+import { AuthService } from 'src/app/services/auth-service.service';
 import { AnimalListComponent } from './animal-list.component';
 
 describe('AnimalListComponent', () => {

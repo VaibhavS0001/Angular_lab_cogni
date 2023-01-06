@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Student, StudentService } from 'src/app/shared/student.service';
+import { Student, StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-student-details',

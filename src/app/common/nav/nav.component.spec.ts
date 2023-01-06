@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AuthService } from 'src/app/shared/auth-service.service';
+import { AuthService } from 'src/app/services/auth-service.service';
 
 import { NavComponent } from './nav.component';
 

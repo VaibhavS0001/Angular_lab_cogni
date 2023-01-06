@@ -10,7 +10,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PentHouseComponent } from '../Day1/pent-house/pent-house.component';
 import { WelcomeComponent } from '../Day1/welcome/welcome.component';
 import { AnimalListComponent } from '../Day2/animal-list/animal-list.component';
-import { ProductlistComponent } from '../Day2/productlist/productlist.component';
+import { ProductlistComponent } from '../common/productlist/productlist.component';
 import { ShoppingCartComponent } from '../Day3/shopping-cart/shopping-cart.component';
 import { EventsComponent } from '../Day4/events/events.component';
 import { NavComponent } from '../common/nav/nav.component';

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { StudentService } from 'src/app/shared/student.service';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-students',

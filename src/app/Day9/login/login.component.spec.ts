@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/auth-service.service';
+import { AuthService } from 'src/app/services/auth-service.service';
 
 import { LoginComponent } from './login.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/compiler';

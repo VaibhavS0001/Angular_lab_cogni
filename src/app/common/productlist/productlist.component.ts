@@ -3,11 +3,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogComponent } from 'src/app/dialog/dialog.component';
 import { Product } from 'src/app/model/product.model';
-import { LoggingService } from 'src/app/shared/logging.service';
-import { ProductService } from 'src/app/shared/product.service';
-import { Observable, Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/auth-service.service';
+import { LoggingService } from 'src/app/services/logging.service';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth-service.service';
+import { Store } from '@ngrx/store';
+import { ProductState } from 'src/app/state/products/product.state';
+import { getProductFeatureState } from 'src/app/state/products/products.selectors';
+import * as ProductActions from '../../state/products/products.actions';
 
 @Component({
   selector: 'app-productlist',
@@ -17,7 +20,6 @@ import { AuthService } from 'src/app/shared/auth-service.service';
 export class ProductlistComponent implements OnInit {
   @Output() productClicked: EventEmitter<Product> = new EventEmitter();
   sCategory: any;
-  // selected = 'user';
   title: string = 'Product List';
   msg!: string;
   productData: Product[] = [];
@@ -30,23 +32,24 @@ export class ProductlistComponent implements OnInit {
   isAuthenticated: boolean = false;
   role!: string;
   links: Array<string> = [];
-  sub!: Subscription;
-  obProduct!: Observable<Product[]>;
 
   constructor(
-    private pService: ProductService,
     private logger: LoggingService,
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
     private authService: AuthService,
-    private route: Router
+    private route: Router,
+    private store: Store<ProductState>
   ) {}
+  pList!: ProductState;
+  public allProducts: Observable<ProductState> = this.store.select(
+    getProductFeatureState
+  );
 
   ngOnInit(): void {
     this.role = this.authService.checkRole();
     // console.log(this.role)
     this.isAuthenticated = this.authService.checkAuthStatus();
-
     if (!this.isAuthenticated) {
       this.links.push('animal');
       this.links.push('login');
@@ -54,16 +57,22 @@ export class ProductlistComponent implements OnInit {
       this.links.push('animal');
       this.links.push('Logout');
     }
+    this.store.dispatch(ProductActions.loadProducts());
+    this.allProducts.subscribe((resp: ProductState) => {
+      this.productData = resp.products;
+    });
+    // console.log(this.role)
+    // this.isAuthenticated = this.authService.checkAuthStatus();
     // this.pService.getProducts().subscribe((data) => {
     //   data.forEach((product) => {
     //     this.productData.push(product);
     //   });
     // });
     //Other Way to get products
-    this.obProduct = this.pService.getProducts();
-    this.obProduct.forEach((product) => {
-      this.productData = product;
-    });
+    // this.obProduct = this.pService.getProducts();
+    // this.obProduct.forEach((product) => {
+    //   this.productData = product;
+    // });
   }
 
   add() {
@@ -71,10 +80,10 @@ export class ProductlistComponent implements OnInit {
       data: { button: 'Add Product' },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        for (let product of this.productData) {
-          if (result.id == product.id) {
+    dialogRef.afterClosed().subscribe((product: Product) => {
+      if (product) {
+        for (let products of this.productData) {
+          if (product.id == products.id) {
             this.c -= 1;
           } else {
             this.c += 1;
@@ -93,18 +102,20 @@ export class ProductlistComponent implements OnInit {
           this.c = 0;
         }
         if (this.c == this.productData.length) {
-          this.pService.createProduct(result).subscribe((data) => {
-            console.log(data);
-            this.productData.push(data);
-            this.snackBar.open(
-              'New Product is created successfully with id ' + data.id,
-              'close',
-              {
-                duration: 2000,
-                // panelClass: ['blue-snackbar']
-              }
-            );
-          });
+          // this.pService.createProduct(result).subscribe((data) => {
+          //   console.log(data);
+          //   this.productData.push(data);
+          //
+          // });
+          this.store.dispatch(ProductActions.createProduct({ product }));
+          this.snackBar.open(
+            'New Product is created successfully with id ' + product.id,
+            'close',
+            {
+              duration: 2000,
+              // panelClass: ['blue-snackbar']
+            }
+          );
           this.c = 0;
         }
       } else {
@@ -139,22 +150,26 @@ export class ProductlistComponent implements OnInit {
     });
   }
 
-  deleteProduct(id: number) {
+  deleteProduct(productId: number) {
     if (confirm(`Are you sure you want to delete this product`)) {
-      this.pService.deleteProduct(id).subscribe(() => {
-        let fIndex = this.productData.findIndex((item) => item.id == id);
-        if (fIndex > -1) {
-          this.productData.splice(fIndex, 1);
-          this.snackBar.open(
-            `Product with id ${id} is deleted successfully.`,
-            'close',
-            {
-              duration: 2000,
-              // panelClass: ['blue-snackbar']
-            }
-          );
-        }
-      });
+      console.log('====================================');
+      console.log(this.productData);
+      console.log('====================================');
+      this.store.dispatch(ProductActions.deleteProduct({ productId }));
+      // this.pService.deleteProduct(id).subscribe(() => {
+      //   let fIndex = this.productData.findIndex((item) => item.id == id);
+      //   if (fIndex > -1) {
+      //     this.productData.splice(fIndex, 1);
+      //     this.snackBar.open(
+      //       `Product with id ${id} is deleted successfully.`,
+      //       'close',
+      //       {
+      //         duration: 2000,
+      //         // panelClass: ['blue-snackbar']
+      //       }
+      //     );
+      //   }
+      // });
     }
   }
 
@@ -163,16 +178,21 @@ export class ProductlistComponent implements OnInit {
       data: { product: products, button: 'update' },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((product: Product) => {
       // console.log('The dialog was closed', result);
-      if (result) {
-        this.pService.updateProduct(result).subscribe(() => {
-          let fIndex = this.productData.findIndex(
-            (item) => item.id == result.id
-          );
-          if (fIndex > -1) {
-            this.productData[fIndex] = result;
-          }
+      if (product) {
+        // this.pService.updateProduct(result).subscribe(() => {
+        //   let fIndex = this.productData.findIndex(
+        //     (item) => item.id == result.id
+        //   );
+        //   if (fIndex > -1) {
+        //     this.productData[fIndex] = result;
+        //   }
+        // });
+        this.store.dispatch(ProductActions.updateProduct({ product }));
+        this.snackBar.open('Product Updated Successfully', 'close', {
+          duration: 2000,
+          // panelClass: ['blue-snackbar']
         });
       } else {
         this.snackBar.open('Operation was canceled', 'close', {

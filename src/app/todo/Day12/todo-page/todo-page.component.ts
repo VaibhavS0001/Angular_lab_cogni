@@ -2,9 +2,14 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppState } from 'src/app/state/app.state';
-import { loadTodos } from 'src/app/state/todos/todo.actions';
+import { State } from 'src/app/state/app.state';
+import {
+  addTodo,
+  loadTodos,
+  removeTodo,
+} from 'src/app/state/todos/todo.actions';
 import { featuredS, selectAllTodos } from 'src/app/state/todos/todo.selectors';
+import { TodoState, todoState } from 'src/app/state/todos/todo.state';
 import { Todo } from './todo.model';
 
 @Component({
@@ -13,31 +18,22 @@ import { Todo } from './todo.model';
   styleUrls: ['./todo-page.component.scss'],
 })
 export class TodoPageComponent {
-  todoList!: any; 
-  state: any
-  constructor(private store: Store<AppState>) {
-    // this.state = store.select(featuredS);
+  todoList!: TodoState;
+  public allTodos: Observable<TodoState> = this.store.select(selectAllTodos);
+
+  constructor(private store: Store<todoState>) {}
+  ngOnInit() {
+    this.store.dispatch(loadTodos());
+    this.allTodos.subscribe((resp: TodoState) => {
+      this.todoList = resp;
+    });
   }
-  public allTodos: any = this.store.select(featuredS)
 
-  onSubmit(todoForm:NgForm){
-    console.log('====================================');
-    
-    // this.allTodos.subscribe(todo =>{
-    //  this.todoList = todo
-    // });
-    console.log('====================================');
-    console.log(todoForm.value);
-   }
+  onSubmit(todoForm: NgForm) {
+    this.store.dispatch(addTodo({ content: todoForm.value.todo }));
+  }
 
-   ngOnInit(){
-    console.log('====================================');
-    console.log("ngOnInit");
-    console.log('====================================');
-    this.store.dispatch(loadTodos())
-    this.allTodos.subscribe((resp: any) =>{
-      this.todoList = resp
-    })
-   }
-
+  remove(id: any) {
+    this.store.dispatch(removeTodo({ id }));
+  }
 }

@@ -4,7 +4,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { StarComponent } from '../star/star.component';
+import { StarComponent } from '../../common/star/star.component';
 
 import { ShoppingCartComponent } from './shopping-cart.component';
 
