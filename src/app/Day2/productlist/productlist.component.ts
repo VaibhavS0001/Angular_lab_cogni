@@ -5,10 +5,9 @@ import { DialogComponent } from 'src/app/dialog/dialog.component';
 import { Product } from 'src/app/model/product.model';
 import { LoggingService } from 'src/app/shared/logging.service';
 import { ProductService } from 'src/app/shared/product.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth-service.service';
-
 
 @Component({
   selector: 'app-productlist',
@@ -29,11 +28,11 @@ export class ProductlistComponent implements OnInit {
   res: any;
   error!: boolean;
   isAuthenticated: boolean = false;
-  role!: string
-  links: Array<string> = []
+  role!: string;
+  links: Array<string> = [];
   sub!: Subscription;
+  obProduct!: Observable<Product[]>;
 
-  
   constructor(
     private pService: ProductService,
     private logger: LoggingService,
@@ -44,21 +43,26 @@ export class ProductlistComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.role = this.authService.checkRole()
+    this.role = this.authService.checkRole();
     // console.log(this.role)
-    this.isAuthenticated = this.authService.checkAuthStatus()
+    this.isAuthenticated = this.authService.checkAuthStatus();
 
-    if(!this.isAuthenticated){
-      this.links.push('animal')
-      this.links.push('login')
-    }else{
-      this.links.push('animal')
-      this.links.push('Logout')
+    if (!this.isAuthenticated) {
+      this.links.push('animal');
+      this.links.push('login');
+    } else {
+      this.links.push('animal');
+      this.links.push('Logout');
     }
-    this.pService.getProducts().subscribe((data) => {
-      data.forEach((product) => {
-        this.productData.push(product);
-      });
+    // this.pService.getProducts().subscribe((data) => {
+    //   data.forEach((product) => {
+    //     this.productData.push(product);
+    //   });
+    // });
+    //Other Way to get products
+    this.obProduct = this.pService.getProducts();
+    this.obProduct.forEach((product) => {
+      this.productData = product;
     });
   }
 
@@ -69,14 +73,14 @@ export class ProductlistComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        for(let product of this.productData) {
+        for (let product of this.productData) {
           if (result.id == product.id) {
-            this.c -= 1
+            this.c -= 1;
           } else {
-            this.c += 1
+            this.c += 1;
           }
-        };
-        if(this.c == (this.productData.length - 2)) {
+        }
+        if (this.c == this.productData.length - 2) {
           this.snackBar.open(
             'Something went wrong your product is not added yet please try again',
             'close',
@@ -86,11 +90,11 @@ export class ProductlistComponent implements OnInit {
             }
           );
           this.add();
-          this.c = 0
+          this.c = 0;
         }
         if (this.c == this.productData.length) {
           this.pService.createProduct(result).subscribe((data) => {
-            console.log(data)
+            console.log(data);
             this.productData.push(data);
             this.snackBar.open(
               'New Product is created successfully with id ' + data.id,
@@ -101,7 +105,7 @@ export class ProductlistComponent implements OnInit {
               }
             );
           });
-          this.c = 0
+          this.c = 0;
         }
       } else {
         this.snackBar.open("Couldn't create new Product", 'close', {
@@ -136,7 +140,7 @@ export class ProductlistComponent implements OnInit {
   }
 
   deleteProduct(id: number) {
-    if(confirm(`Are you sure you want to delete this product`)){
+    if (confirm(`Are you sure you want to delete this product`)) {
       this.pService.deleteProduct(id).subscribe(() => {
         let fIndex = this.productData.findIndex((item) => item.id == id);
         if (fIndex > -1) {
@@ -185,8 +189,6 @@ export class ProductlistComponent implements OnInit {
 
   addToShopping(product: any): void {
     this.productClicked.emit(product);
-    this.route.navigate(['cart'], {queryParams: product })
-
+    this.route.navigate(['cart'], { queryParams: product });
   }
-
 }

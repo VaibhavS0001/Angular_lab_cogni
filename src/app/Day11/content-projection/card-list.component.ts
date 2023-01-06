@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'card-list',
@@ -6,7 +8,7 @@ import { Component } from '@angular/core';
     <h1>Card List</h1>
 
     <card>
-      <header #header><h1>This will be Content Child </h1></header>
+      <header #header><h1>This will be Content Child</h1></header>
       <p #p>This will be Content Child</p>
     </card>
 
@@ -20,4 +22,17 @@ import { Component } from '@angular/core';
     </card>
   `,
 })
-export class CardListComponent {}
+export class CardListComponent {
+  constructor(private http: HttpClient) {
+    const data = this.http.get('/api/products/');
+    const subject = new Subject();
+    subject.next(
+      data.subscribe((s) => {
+        console.log('====================================');
+        console.log(s);
+        console.log('====================================');
+      })
+    );
+    subject.complete()
+  }
+}

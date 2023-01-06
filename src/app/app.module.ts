@@ -21,7 +21,6 @@ import { ShoppingCartComponent } from './Day3/shopping-cart/shopping-cart.compon
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RepeatDataPipe } from './repeat-data.pipe';
 import { HttpClientModule } from '@angular/common/http';
-import { NavComponent } from './Day4/nav/nav.component';
 import { EventsComponent } from './Day4/events/events.component';
 import { EventDetailsComponent } from './Day4/event-details/event-details.component';
 import { MatCardModule } from '@angular/material/card';
@@ -49,7 +48,14 @@ import { LoginComponent } from './Day9/login/login.component';
 import { DialogAnimalComponent } from './Day10/dialog-animal/dialog-animal.component';
 import { GreetingComponent } from './Day10/greeting/greeting.component';
 import { CardComponent } from './Day11/content-projection/card.component';
-import { CardListComponent } from './Day11/content-projection/card-list.component';
+import { CardListComponent } from './Day11/card-list/card-list.component';
+import { SharedModule } from './common/common.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { AppEffects } from './to.effects';
+import { EffectsModule } from '@ngrx/effects';
+import { TodoEffects } from './state/todos/todo.effects';
+import { todoReducer } from './state/todos/todo.reducers';
 
 @NgModule({
   declarations: [
@@ -61,7 +67,6 @@ import { CardListComponent } from './Day11/content-projection/card-list.componen
     StarComponent,
     ShoppingCartComponent,
     RepeatDataPipe,
-    NavComponent,
     CardComponent,
     CardListComponent,
     EventsComponent,
@@ -81,6 +86,7 @@ import { CardListComponent } from './Day11/content-projection/card-list.componen
     GreetingComponent,
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     MatRadioModule,
     AppRoutingModule,
@@ -102,11 +108,15 @@ import { CardListComponent } from './Day11/content-projection/card-list.componen
     MatDividerModule,
     MatDialogModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('todo', todoReducer),
+    EffectsModule.forRoot([TodoEffects]),
+    StoreDevtoolsModule.instrument(),
     HttpClientInMemoryWebApiModule.forRoot(DataService),
   ],
-  exports: [MatFormFieldModule, MatInputModule],
+  exports: [],
   providers: [DatePipe],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [],
 })
 export class AppModule {}

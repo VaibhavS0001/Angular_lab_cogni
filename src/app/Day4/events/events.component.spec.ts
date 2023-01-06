@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EventService } from 'src/app/shared/event.service';
-import { NavComponent } from '../nav/nav.component';
+import { NavComponent } from '../../common/nav/nav.component';
 import { EventsComponent } from './events.component';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/shared/auth-service.service';

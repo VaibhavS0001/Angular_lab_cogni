@@ -17,7 +17,7 @@ import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { category } from 'src/app/model/product.model';
-import { NavComponent } from 'src/app/Day4/nav/nav.component';
+import { NavComponent } from 'src/app/common/nav/nav.component';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BehaviorSubject } from 'rxjs';

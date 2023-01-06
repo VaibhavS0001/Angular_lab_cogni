@@ -13,7 +13,7 @@ import { AnimalListComponent } from '../Day2/animal-list/animal-list.component';
 import { ProductlistComponent } from '../Day2/productlist/productlist.component';
 import { ShoppingCartComponent } from '../Day3/shopping-cart/shopping-cart.component';
 import { EventsComponent } from '../Day4/events/events.component';
-import { NavComponent } from '../Day4/nav/nav.component';
+import { NavComponent } from '../common/nav/nav.component';
 import { RepeatDataPipe } from '../repeat-data.pipe';
 
 import { PStructureComponent } from './p-structure.component';

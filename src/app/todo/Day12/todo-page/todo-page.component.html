@@ -1,0 +1,32 @@
+<router-outlet></router-outlet>
+<app-nav [title]="'This is Todo Component'" [links]="['Test Links']"></app-nav>
+<mat-card class="m-auto mt-5 w-50 shadow-lg">
+  <mat-card-header>
+    <mat-card-title>Create Todo Tasks</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <br />
+  <mat-card-content>
+    <form #todoForm="ngForm" class="d-flex" (ngSubmit)="onSubmit(todoForm)">
+      <mat-form-field class="flex3">
+        <mat-label>Todo Task</mat-label>
+        <input
+          matInput
+          name="todo"
+          type="text"
+          placeholder="Enter New Todo Data"
+          #todo="ngModel"
+          ngModel
+        />
+      </mat-form-field>
+      <button class="m-4 flex1" mat-raised-button>Add Task</button>
+    </form>
+    <mat-divider></mat-divider>
+    <br />
+    <ul>
+      <div *ngFor="let todo of todoList.todos">
+        <li>{{ todo.content }}</li>
+      </div>
+    </ul>
+  </mat-card-content>
+</mat-card>

@@ -215,6 +215,10 @@ export class DataService implements InMemoryDbService {
           image: '../assets/images/dog.jpg',
         },
       ],
+      todos: [
+        { id: 111, content: 'hello' },
+        { id: 112, content: 'world' },
+      ],
     };
   }
 }
