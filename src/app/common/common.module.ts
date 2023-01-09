@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StarComponent } from './star/star.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { AnimalListComponent } from './animallist/animal-list.component';
 
 
 
@@ -14,7 +15,8 @@ import { MaterialModule } from '../material/material.module';
   declarations: [
     NavComponent,
     ProductlistComponent,
-    StarComponent
+    StarComponent,
+    AnimalListComponent
   ],
   imports: [
     MaterialModule,
@@ -23,6 +25,6 @@ import { MaterialModule } from '../material/material.module';
     CommonRoutingModule,
     FormsModule
   ],
-  exports: [NavComponent, ProductlistComponent, StarComponent]
+  exports: [NavComponent, ProductlistComponent, StarComponent, AnimalListComponent]
 })
 export class SharedModule { }

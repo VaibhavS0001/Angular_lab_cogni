@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PentHouseComponent } from './Day1/pent-house/pent-house.component';
 import { WelcomeComponent } from './Day1/welcome/welcome.component';
-import { AnimalListComponent } from './Day2/animal-list/animal-list.component';
 import { ShoppingCartComponent } from './Day3/shopping-cart/shopping-cart.component';
 import { RepeatDataPipe } from './repeat-data.pipe';
 import { HttpClientModule } from '@angular/common/http';
@@ -40,13 +39,15 @@ import { TodoEffects } from './state/todos/todo.effects';
 import { todoReducer } from './state/todos/todo.reducers';
 import { productReducer } from './state/products/products.reducers';
 import { MaterialModule } from './material/material.module';
+import { animalReducer } from './state/animals/animal.reducers';
+import { ProductEffects } from './state/products/products.effects';
+import { AnimalEffects } from './state/animals/animal.effects';
 
 @NgModule({
   declarations: [
     AppComponent,
     PentHouseComponent,
     WelcomeComponent,
-    AnimalListComponent,
     ShoppingCartComponent,
     RepeatDataPipe,
     CardComponent,
@@ -79,7 +80,8 @@ import { MaterialModule } from './material/material.module';
     StoreModule.forRoot({}),
     StoreModule.forFeature('todos', todoReducer),
     StoreModule.forFeature('products', productReducer),
-    EffectsModule.forRoot([TodoEffects]),
+    StoreModule.forFeature('animals', animalReducer),
+    EffectsModule.forRoot([TodoEffects, AnimalEffects, ProductEffects]),
     StoreDevtoolsModule.instrument(),
     HttpClientInMemoryWebApiModule.forRoot(DataService),
   ],

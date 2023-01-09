@@ -166,9 +166,6 @@ export class ProductlistComponent implements OnInit {
 
   deleteProduct(productId: number) {
     if (confirm(`Are you sure you want to delete this product`)) {
-      console.log('====================================');
-      console.log(this.productData);
-      console.log('====================================');
       this.store.dispatch(ProductActions.deleteProduct({ productId }));
       // this.pService.deleteProduct(id).subscribe(() => {
       //   let fIndex = this.productData.findIndex((item) => item.id == id);

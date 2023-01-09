@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Animal } from '../Day2/animal-list/animal-list.component';
+import { Animal } from '../common/animallist/animal-list.component';
 
 @Injectable({
   providedIn: 'root'

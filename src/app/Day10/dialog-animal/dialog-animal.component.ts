@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Animal } from 'src/app/Day2/animal-list/animal-list.component';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';import { Animal } from 'src/app/common/animallist/animal-list.component';
 
 @Component({
   selector: 'app-dialog-animal',

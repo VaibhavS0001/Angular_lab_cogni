@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { DialogAnimalComponent } from 'src/app/Day10/dialog-animal/dialog-animal.component';
 import { AnimalService } from 'src/app/services/animal.service';
 import { AuthService } from 'src/app/services/auth-service.service';
+import { getAnimals } from 'src/app/state/animals/animal.selectors';
+import { AnimalState } from 'src/app/state/animals/animal.state';
+import * as AnimalActions from '../../state/animals/animal.actions';
 
 export interface Animal {
   id: number;
@@ -37,8 +42,8 @@ export class AnimalListComponent implements OnInit {
     private auth: AuthService,
     private aService: AnimalService,
     private snackBar: MatSnackBar,
-    public dialog: MatDialog
-
+    public dialog: MatDialog,
+    private store: Store<AnimalState>
   ) {
     this.role = this.auth.checkRole();
     this.isAuthenticated = this.auth.checkAuthStatus();
@@ -52,12 +57,18 @@ export class AnimalListComponent implements OnInit {
     }
   }
 
+  public allAnimals: Observable<Animal[]> = this.store.select(getAnimals);
+
   ngOnInit(): void {
-    this.aService.getAnimals().subscribe((animals) => {
-      animals.forEach((animal) => {
-        this.ELEMENT_DATA.push(animal);
-      });
+    this.store.dispatch(AnimalActions.loadAnimals());
+    this.allAnimals.subscribe((resp: Animal[]) => {
+      this.ELEMENT_DATA = resp;
     });
+    // this.aService.getAnimals().subscribe((animals) => {
+    //   animals.forEach((animal) => {
+    //     this.ELEMENT_DATA.push(animal);
+    //   });
+    // });
     this.temp2 = this.ELEMENT_DATA;
   }
 
@@ -93,10 +104,10 @@ export class AnimalListComponent implements OnInit {
       data: { button: 'Add Animal' },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        for (let product of this.ELEMENT_DATA) {
-          if (result.id == product.id) {
+    dialogRef.afterClosed().subscribe((animal) => {
+      if (animal) {
+        for (let a of this.ELEMENT_DATA) {
+          if (animal.id == a.id) {
             this.c -= 1;
           } else {
             this.c += 1;
@@ -115,17 +126,27 @@ export class AnimalListComponent implements OnInit {
           this.c = 0;
         }
         if (this.c == this.ELEMENT_DATA.length) {
-          this.aService.createAnimal(result).subscribe((data) => {
-            this.ELEMENT_DATA.push(data);
-            this.snackBar.open(
-              'New Product is created successfully with id ' + data.id,
-              'close',
-              {
-                duration: 2000,
-                // panelClass: ['blue-snackbar']
-              }
-            );
-          });
+          this.store.dispatch(AnimalActions.createAnimal({ animal }));
+
+          // this.aService.createAnimal(result).subscribe((data) => {
+          //   this.ELEMENT_DATA.push(data);
+          //   this.snackBar.open(
+          //     'New Product is created successfully with id ' + data.id,
+          //     'close',
+          //     {
+          //       duration: 2000,
+          //       // panelClass: ['blue-snackbar']
+          //     }
+          //   );
+          // });
+          this.snackBar.open(
+            'New Animal is created successfully with id ' + animal.id,
+            'close',
+            {
+              duration: 2000,
+              // panelClass: ['blue-snackbar']
+            }
+          );
           this.c = 0;
         }
       } else {
@@ -137,21 +158,26 @@ export class AnimalListComponent implements OnInit {
     });
   }
 
-  updateAnimal(animal: Animal) {
+  updateAnimal(animals: Animal) {
     const dialogRef = this.dialog.open(DialogAnimalComponent, {
-      data: { animal: animal, button: 'update' },
+      data: { animal: animals, button: 'update' },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((animal) => {
       // console.log('The dialog was closed', result);
-      if (result) {
-        this.aService.updateAnimal(result).subscribe(() => {
-          let fIndex = this.ELEMENT_DATA.findIndex(
-            (item) => item.id == result.id
-          );
-          if (fIndex > -1) {
-            this.ELEMENT_DATA[fIndex] = result;
-          }
+      if (animal) {
+        // this.aService.updateAnimal(result).subscribe(() => {
+        //   let fIndex = this.ELEMENT_DATA.findIndex(
+        //     (item) => item.id == result.id
+        //   );
+        //   if (fIndex > -1) {
+        //     this.ELEMENT_DATA[fIndex] = result;
+        //   }
+        // });
+        this.store.dispatch(AnimalActions.updateAnimal({ animal }));
+        this.snackBar.open('Animal Updated Successfully', 'close', {
+          duration: 2000,
+          // panelClass: ['blue-snackbar']
         });
       } else {
         this.snackBar.open('Operation was canceled', 'close', {
@@ -162,22 +188,31 @@ export class AnimalListComponent implements OnInit {
     });
   }
 
-  deleteAnimal(id: number) {
+  deleteAnimal(animalId: number) {
     if (confirm(`Are you sure you want to delete this product`)) {
-      this.aService.deleteAnimal(id).subscribe(() => {
-        let fIndex = this.ELEMENT_DATA.findIndex((item) => item.id == id);
-        if (fIndex > -1) {
-          this.ELEMENT_DATA.splice(fIndex, 1);
-          this.snackBar.open(
-            `Product with id ${id} is deleted successfully.`,
-            'close',
-            {
-              duration: 2000,
-              // panelClass: ['blue-snackbar']
-            }
-          );
+      // this.aService.deleteAnimal(id).subscribe(() => {
+      //   let fIndex = this.ELEMENT_DATA.findIndex((item) => item.id == id);
+      //   if (fIndex > -1) {
+      //     this.ELEMENT_DATA.splice(fIndex, 1);
+      //     this.snackBar.open(
+      //       `Product with id ${id} is deleted successfully.`,
+      //       'close',
+      //       {
+      //         duration: 2000,
+      //         // panelClass: ['blue-snackbar']
+      //       }
+      //     );
+      //   }
+      // });
+      this.store.dispatch(AnimalActions.deleteAnimal({ animalId }));
+      this.snackBar.open(
+        `Animal with id ${animalId} is deleted successfully.`,
+        'close',
+        {
+          duration: 2000,
+          // panelClass: ['blue-snackbar']
         }
-      });
+      );
     }
   }
 }
