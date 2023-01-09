@@ -1,3 +1,10 @@
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,11 +14,35 @@ import { AuthService } from 'src/app/services/auth-service.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  animations: [
+    trigger('jiggle-wiggle', [
+      state(
+        'start',
+        style({
+          position: 'relative',
+          left: '0px',
+        })
+      ),
+      state(
+        'end',
+        style({
+          position: 'relative',
+          left: '100px',
+        })
+      ),
+      transition('void=>end', [animate('1s ease-in-out')]),
+      // transition('end=>start',[
+      //   animate('1s 3s')
+      // ]),
+    ]),
+  ],
 })
 export class LoginComponent implements OnInit {
   // @Output() role: EventEmitter<string> = new EventEmitter();
   loginForm!: FormGroup;
   isAuthenticated: boolean = false;
+  isHovering: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
@@ -53,5 +84,9 @@ export class LoginComponent implements OnInit {
         }
       }
     });
+  }
+
+  changeHover() {
+    this.isHovering = !this.isHovering;
   }
 }

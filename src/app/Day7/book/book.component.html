@@ -34,12 +34,18 @@
         </mat-form-field>
         <mat-form-field appearance="outline" class="m-1">
           <mat-label>Date Of Publishing</mat-label>
-          <input
+          <input matInput [matDatepicker]="picker" formControlName="dop" matTooltip="MM/DD/YYYY"/>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <!-- <input
             matInput
             class="form-control"
             type="date"
             formControlName="dop"
-          />
+          /> -->
           <mat-error>Date of Publishing is Required</mat-error>
         </mat-form-field>
       </div>

@@ -7,7 +7,13 @@
       <mat-label>Filter By Category</mat-label>
       <input matInput [(ngModel)]="sCategory" (keyup)="filter()" />
     </mat-form-field>
-    <button class="m-1" mat-raised-button color="primary" *ngIf="role == 'admin'" (click)="add()">
+    <button
+      class="m-1"
+      mat-raised-button
+      color="primary"
+      *ngIf="role == 'admin'"
+      (click)="add()"
+    >
       {{ button }}
     </button>
     <table
@@ -26,7 +32,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="add" *ngFor="let i of productData">
+        <tr id="add" *ngFor="let i of productData; let index = index">
           <td>{{ i.id }}</td>
           <td id="cart">{{ i.name }}</td>
           <td>{{ i.price | currency : "INR" }}</td>
@@ -39,6 +45,9 @@
           </td>
           <td>
             <img
+              [@enlarge]=isHoveringState[index]
+              (mouseenter)="changeHover(index)"
+              (mouseleave)="changeHover(index)"
               src="{{ i.image }}"
               alt=""
               width="30%"
@@ -47,9 +56,19 @@
             />
             <!-- matTooltip = "{{i.category == category.electronic ? 'this is a {{i.category}} product' : 'this is an {{i.category}} product'}}" -->
           </td>
-          <td class="text-center"><mat-icon (click)="addToShopping(i)">shopping_cart</mat-icon></td>
-          <td><mat-icon  *ngIf="role == 'admin'" (click)="updateProduct(i)">edit</mat-icon></td>
-          <td><mat-icon  *ngIf="role == 'admin'" (click)="deleteProduct(i.id)">delete</mat-icon></td>
+          <td class="text-center">
+            <mat-icon (click)="addToShopping(i)">shopping_cart</mat-icon>
+          </td>
+          <td>
+            <mat-icon *ngIf="role == 'admin'" (click)="updateProduct(i)"
+              >edit</mat-icon
+            >
+          </td>
+          <td>
+            <mat-icon *ngIf="role == 'admin'" (click)="deleteProduct(i.id)"
+              >delete</mat-icon
+            >
+          </td>
         </tr>
       </tbody>
     </table>

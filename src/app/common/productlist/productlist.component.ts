@@ -9,13 +9,25 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { Store } from '@ngrx/store';
 import { ProductState } from 'src/app/state/products/product.state';
-import { getProductFeatureState } from 'src/app/state/products/products.selectors';
+import { getProducts } from 'src/app/state/products/products.selectors';
 import * as ProductActions from '../../state/products/products.actions';
+import { state, style, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-productlist',
   templateUrl: './productlist.component.html',
   styleUrls: ['./productlist.component.scss'],
+  animations: [
+    trigger('enlarge', [
+      state(
+        'end',
+        style({
+          transform: 'scale(1.5)',
+          'box-shadow': '0 0 10px rgba(0, 0, 0, 0.5)',
+        })
+      ),
+    ]),
+  ],
 })
 export class ProductlistComponent implements OnInit {
   @Output() productClicked: EventEmitter<Product> = new EventEmitter();
@@ -32,6 +44,7 @@ export class ProductlistComponent implements OnInit {
   isAuthenticated: boolean = false;
   role!: string;
   links: Array<string> = [];
+  isHoveringState: Array<string> = [];
 
   constructor(
     private logger: LoggingService,
@@ -42,9 +55,7 @@ export class ProductlistComponent implements OnInit {
     private store: Store<ProductState>
   ) {}
   pList!: ProductState;
-  public allProducts: Observable<ProductState> = this.store.select(
-    getProductFeatureState
-  );
+  public allProducts: Observable<Product[]> = this.store.select(getProducts);
 
   ngOnInit(): void {
     this.role = this.authService.checkRole();
@@ -58,9 +69,12 @@ export class ProductlistComponent implements OnInit {
       this.links.push('Logout');
     }
     this.store.dispatch(ProductActions.loadProducts());
-    this.allProducts.subscribe((resp: ProductState) => {
-      this.productData = resp.products;
+    this.allProducts.subscribe((resp: Product[]) => {
+      this.productData = resp;
     });
+    for (let i = 0; i < this.productData.length; i++) {
+      this.isHoveringState[i] = 'end';
+    }
     // console.log(this.role)
     // this.isAuthenticated = this.authService.checkAuthStatus();
     // this.pService.getProducts().subscribe((data) => {
@@ -210,5 +224,10 @@ export class ProductlistComponent implements OnInit {
   addToShopping(product: any): void {
     this.productClicked.emit(product);
     this.route.navigate(['cart'], { queryParams: product });
+  }
+
+  changeHover(index: number): void {
+    this.isHoveringState[index] =
+      this.isHoveringState[index] === 'end' ? 'void' : 'end';
   }
 }

@@ -42,7 +42,6 @@ export const productReducer = createReducer(
       error: action.error,
     };
   }),
-  // After a create, the currentProduct is the new product.
   on(ProductActions.createProductSuccess, (state, action): ProductState => {
     return {
       ...state,
@@ -57,7 +56,6 @@ export const productReducer = createReducer(
       error: action.error,
     };
   }),
-  // After a delete, the currentProduct is null.
   on(ProductActions.deleteProductSuccess, (state, action): ProductState => {
     return {
       ...state,
