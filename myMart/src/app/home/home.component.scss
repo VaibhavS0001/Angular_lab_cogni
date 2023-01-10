@@ -1,8 +1,10 @@
 .grid-container {
-  margin: 20px;
+  margin: 5% 25%;
+  min-width: 351px;
 }
 
 .dashboard-card {
+  background-color: inherit;
   position: absolute;
   top: 15px;
   left: 15px;
@@ -18,4 +20,14 @@
 
 .dashboard-card-content {
   text-align: center;
+}
+
+.flex1{
+  flex: 1
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

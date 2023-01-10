@@ -1,24 +1,35 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
+<mat-card class="grid-container">
+  <mat-card-header class="center mb-2">
+    <mat-card-title>Welcome</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content class="mt-3">
+    <form [formGroup]="loginForm">
+      <div class="d-flex">
+        <mat-form-field appearance="fill" class="flex1">
+          <mat-label>Enter your Email</mat-label>
+          <input matInput placeholder="Ex. Nougat@gmail.com" formControlName="email"/>
+          <mat-error *ngIf="loginForm.get('email').errors?.required" >Email is Required</mat-error>
+          <mat-error *ngIf="loginForm.get('email').errors?.email" >Format should be xyz@abc.com</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="d-flex">
+        <mat-form-field
+          hintLabel="Max 14 characters"
+          appearance="fill"
+          class="flex1"
+        >
+          <mat-label>Enter your Password</mat-label>
+          <input matInput #input type="password" formControlName="password" />
+          <mat-hint align="end">{{ input.value.length }}/14</mat-hint>
+          <mat-error *ngIf="loginForm.get('password').errors?.required">Password is Required</mat-error>
+          <mat-error *ngIf="loginForm.get('password').errors?.maxlength">Max length of password is 14</mat-error>
+          <mat-error *ngIf="loginForm.get('password').errors?.minlength">Min length of password is 10</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions class="center my-2">
+    <button mat-raised-button color="primary" (click)="login()" [disabled]="!loginForm.valid">Login</button>
+  </mat-card-actions>
+</mat-card>

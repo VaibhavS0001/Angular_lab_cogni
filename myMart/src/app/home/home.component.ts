@@ -1,33 +1,61 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../services/login.service';
+import { User } from '../model/user.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  /** Based on the screen size, switch from standard to one column per row */
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-      if (matches) {
-        return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
-        ];
+  title: string = 'Dashboard';
+  loginForm!: any;
+  users!: User[];
+  user!: User;
+
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private lService: LoginService
+  ) {}
+
+  login() {
+    console.log('====================================');
+    console.log(this.loginForm.get('email').value);
+    console.log('====================================');
+    this.lService.getUsers().subscribe((users) => {
+      this.user = users.filter(
+        (user) =>
+          user.email === this.loginForm.get('email').value &&
+          user.password === this.loginForm.get('password').value
+      )[0];
+      if (this.user) {
+        localStorage.setItem('loggedInUser', JSON.stringify(this.user));
+        this.router.navigate(['/manager', 'Manager Home']);
       }
+    });
+  }
 
-      return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
-      ];
-    })
-  );
+  ngOnInit(): void {
+    this.initLoginForm();
+  }
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  initLoginForm() {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(14),
+          Validators.minLength(10),
+        ],
+      ],
+    });
+  }
 }
