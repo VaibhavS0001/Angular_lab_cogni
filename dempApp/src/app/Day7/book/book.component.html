@@ -29,7 +29,10 @@
             formControlName="title"
           />
           <mat-error *ngIf="bookForm.get('title').errors?.required"
-            >title is Required</mat-error
+            >Title is Required</mat-error
+          >
+          <mat-error *ngIf="bookForm.get('title').errors?.pattern"
+            >Title should be Capitalized</mat-error
           >
         </mat-form-field>
         <mat-form-field appearance="outline" class="m-1">
